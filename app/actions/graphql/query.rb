@@ -8,11 +8,12 @@ module Transponder
           data = Transponder::GraphQL::TransponderSchema
                  .execute(
                    request.params[:query],
-                   variables: request.params[:variables],
+                   operation_name: request.params[:operationName],
+                   # variables: JSON.parse(request.params.get(:variables, "{}")),
                  )
-          json = JSON.generate(data)
 
-          response.body = json
+          response.format = :json
+          response.body = data.to_json
         end
       end
     end

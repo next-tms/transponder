@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require "interstellar"
+require "interstellar-next"
+
 module Transponder
   module GraphQL
     module Types
@@ -8,14 +11,18 @@ module Transponder
         include ::GraphQL::Types::Relay::HasNodeField
         include ::GraphQL::Types::Relay::HasNodesField
 
-        # Add root-level fields here.
-        # They will be entry points for queries on your schema.
+        field :carrier, CarrierType, null: true do
+          argument :scac, String, required: true
+        end
 
-        # TODO: remove me
-        field :test_field, String, null: false,
-          description: "An example field added by the generator"
-        def test_field
-          "Hello World!"
+        field :carriers, [CarrierType], null: false
+
+        def carrier(scac:)
+          ::Interstellar::Carriers.all.find { |carrier| carrier.scac&.downcase == scac.to_s.downcase }
+        end
+
+        def carriers
+          @carriers ||= ::Interstellar::Carriers.all
         end
       end
     end
