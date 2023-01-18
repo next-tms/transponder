@@ -11,19 +11,8 @@ module Transponder
         include ::GraphQL::Types::Relay::HasNodeField
         include ::GraphQL::Types::Relay::HasNodesField
 
-        field :carrier, CarrierType, null: true do
-          argument :scac, String, required: true
-        end
-
-        field :carriers, [CarrierType], null: false
-
-        def carrier(scac:)
-          ::Interstellar::Carriers.all.find { |carrier| carrier.scac&.downcase == scac.to_s.downcase }
-        end
-
-        def carriers
-          @carriers ||= ::Interstellar::Carriers.all
-        end
+        multiple_fields ::Transponder::GraphQL::Queries::Carrier,
+                        ::Transponder::GraphQL::Queries::Tracking
       end
     end
   end
