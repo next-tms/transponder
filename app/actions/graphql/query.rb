@@ -5,11 +5,14 @@ module Transponder
     module GraphQL
       class Query < Transponder::Action
         def handle(request, response)
+          variables = request.params[:variables]
+
+          Hanami.logger.debug(variables.inspect)
           data = Transponder::GraphQL::TransponderSchema
                  .execute(
                    request.params[:query],
                    operation_name: request.params[:operationName],
-                   # variables: JSON.parse(request.params.get(:variables, "{}")),
+                   variables: variables,
                  )
 
           response.format = :json
