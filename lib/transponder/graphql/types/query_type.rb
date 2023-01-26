@@ -13,6 +13,8 @@ module Transponder
 
         field :tracking_info, resolver: ::Transponder::GraphQL::Queries::Tracking
         field :document, resolver: ::Transponder::GraphQL::Queries::Document
+
+        multiple_fields ::Transponder::GraphQL::Queries::Carrier
       end
     end
   end
