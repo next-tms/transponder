@@ -11,8 +11,8 @@ module Transponder
         include ::GraphQL::Types::Relay::HasNodeField
         include ::GraphQL::Types::Relay::HasNodesField
 
-        multiple_fields ::Transponder::GraphQL::Queries::Carrier,
-                        ::Transponder::GraphQL::Queries::Tracking
+        field :tracking_info, resolver: ::Transponder::GraphQL::Queries::Tracking
+        field :document, resolver: ::Transponder::GraphQL::Queries::Document
       end
     end
   end
