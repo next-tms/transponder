@@ -7,9 +7,8 @@ COPY . /app
 RUN bundle install -j $(nproc) --quiet
 
 ENV LANG=en_US.UTF-8
-ENV HANAMI_HOST=0.0.0.0
 ENV HANAMI_ENV=production
 ENV RACK_ENV=production
 
 EXPOSE 2300
-ENTRYPOINT ["hanami", "server"]
+ENTRYPOINT ["bundle", "exec", "puma", "-b", "tcp://[::]:2300"]
