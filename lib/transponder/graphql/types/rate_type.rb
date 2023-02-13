@@ -4,7 +4,7 @@ module Transponder
   module GraphQL
     module Types
       class RateType < BaseObject
-        field :total_cents, Float, null: false
+        field :total_cents, MoneyType, null: false
         field :currency, String, null: false
         field :estimate_reference, String, null: true
         field :carrier_name, String, null: true
