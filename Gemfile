@@ -12,6 +12,7 @@ gem "puma"
 gem "rake"
 
 gem "graphql", "~> 2.0"
+gem 'active_utils', '~> 3.3', '>= 3.3.19'
 
 gem "interstellar", git: "https://github.com/next-tms/interstellar", branch: "master",
   ref: "a11f245c79f7bb826b0d68aea186a809ca336531"
