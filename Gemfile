@@ -19,6 +19,7 @@ gem "interstellar", git: "https://github.com/next-tms/interstellar", branch: "ma
 gem "interstellar-next", git: "https://github.com/next-tms/interstellar-next", branch: "master",
   ref: "710ff8d68403e1a4fce65467f69d5b1cf134cf38"
 gem "spacetime", git: "https://github.com/next-tms/spacetime", ref: "b430558c2458c6d674ec1803246ff5fcccacff94"
+gem 'honeybadger'
 
 group :development, :test do
   gem "dotenv"
