@@ -4,8 +4,8 @@ module Transponder
   module GraphQL
     module Types
       class CarrierCredentialCategory < BaseEnum
-        value "API", value: :api
-        value "WEBSITE", value: :website
+        value "api", value: :api
+        value "website", value: :website
       end
     end
   end

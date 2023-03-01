@@ -10,7 +10,7 @@ module Transponder
         carrier = ::Interstellar::Carriers.all.find { |carrier| carrier.scac&.downcase == scac.to_s.downcase }
         return nil unless carrier
 
-        interstellar_credentials = BuildCredentials.new(credentials: credentials).call
+        interstellar_credentials = credentials.map { |credential| BuildCredentials.new(credentials: credential).call }
         carrier.new(interstellar_credentials, customer_location: customer_location)
       end
 

@@ -5,7 +5,7 @@ module Transponder
     module Types
       class BaseInterstellarResolver < ::GraphQL::Schema::Resolver
         argument :scac, String, required: true
-        argument :credentials, ::Transponder::GraphQL::Types::CarrierCredentialInputType, required: true
+        argument :credentials, [::Transponder::GraphQL::Types::CarrierCredentialInputType], required: true
 
         def resolve(scac:, credentials:, **args)
           @interstellar_client = ::Transponder::InterstellarClient::BuildClient.new(
