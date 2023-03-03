@@ -8,6 +8,7 @@ module Transponder
         argument :credentials, [::Transponder::GraphQL::Types::CarrierCredentialInputType], required: true
 
         def resolve(scac:, credentials:, **args)
+          @scac = scac
           @interstellar_client = ::Transponder::InterstellarClient::BuildClient.new(
             scac: scac,
             credentials: credentials
@@ -18,7 +19,7 @@ module Transponder
 
         private
 
-        attr_reader :interstellar_client
+        attr_reader :scac, :interstellar_client
       end
     end
   end
