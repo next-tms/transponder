@@ -9,6 +9,7 @@ module Transponder
         argument :country_code, String, required: false
         argument :postal_code, String, required: false
         argument :province, String, required: false
+        argument :contact, ContactInputType, required: false
       end
     end
   end
