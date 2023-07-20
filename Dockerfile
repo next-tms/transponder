@@ -1,6 +1,6 @@
-FROM ruby:3.2.1-alpine3.17
+FROM ruby:3.2.2-alpine3.18
 
-RUN apk add --no-cache build-base
+RUN apk add --no-cache build-base git
 
 WORKDIR /app
 COPY . /app
