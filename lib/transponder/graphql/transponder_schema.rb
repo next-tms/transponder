@@ -9,6 +9,9 @@ module Transponder
       # For batch-loading (see https://graphql-ruby.org/dataloader/overview.html)
       use ::GraphQL::Dataloader
 
+      # Stop validating when it encounters this many errors:
+      validate_max_errors(100)
+
       class << self
         # GraphQL-Ruby calls this when something goes wrong while running a query:
 
@@ -18,9 +21,6 @@ module Transponder
           # to return the correct GraphQL object type for `obj`
           raise(::GraphQL::RequiredImplementationMissingError)
         end
-
-        # Stop validating when it encounters this many errors:
-        validate_max_errors(100)
 
         # Relay-style Object Identification:
 
