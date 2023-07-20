@@ -1,0 +1,39 @@
+module Transponder
+  module GraphQL
+    module Queries
+      class FetchPro < Transponder::GraphQL::Types::BaseInterstellarResolver
+        type String, null: true
+
+        argument :pickup_number, String, required: true
+        argument :pickup_on, ::GraphQL::Types::ISO8601Date, required: false
+        argument :dispatched_at, ::GraphQL::Types::ISO8601Date, required: false
+
+        def call(pickup_number:, pickup_on: nil, dispatched_at: nil)
+          pro = nil
+
+          if pickup_on
+            [
+              pickup_on.to_date,
+              pickup_on.to_date - 1.day,
+              pickup_on.to_date + 1.day,
+              pickup_on.to_date + 2.days,
+            ].each do |date|
+              pro = interstellar_client.find_tracking_number_from_pickup_number(pickup_number, date)
+              break if pro.present?
+            end
+          end
+
+          return pro if pro
+          return unless dispatched_at
+
+          [dispatched_at.to_date, dispatched_at.to_date + 1.day].each do |date|
+            pro = interstellar_client.find_tracking_number_from_pickup_number(pickup_number, date)
+            break if pro.present?
+          end
+
+          pro
+        end
+      end
+    end
+  end
+end

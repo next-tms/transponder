@@ -3,7 +3,9 @@
 module Transponder
   module GraphQL
     module Types
-      class BaseEnum < ::GraphQL::Schema::Enum; end
+      class PickupResponseType < BaseObject
+        field :pickup_number, String
+      end
     end
   end
 end
