@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 module Transponder
-    module InterstellarClient
+  module InterstellarClient
     class BuildCredentials
       def initialize(credentials:)
         @type = credentials[:type]
@@ -7,7 +9,7 @@ module Transponder
       end
 
       def call
-        return nil if %i[api api_key api_proxy selenoid website].exclude?(type)
+        return nil if [:api, :api_key, :api_proxy, :selenoid, :website].exclude?(type)
         return selenoid_credentials if type == :selenoid
 
         Interstellar::Credential.new(**credentials)
@@ -20,8 +22,8 @@ module Transponder
       def selenoid_credentials
         Interstellar::Credential.new(
           type: :selenoid,
-          base_url: URI.parse(Rails.application.credentials.selenoid.base_url),
-          browser: :chrome
+          base_url: URI.parse(ENV.fetch("SELENOID_BASE_URL")),
+          browser: :chrome,
         )
       end
     end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Transponder
   module InterstellarClient
     class BuildClient
@@ -18,15 +20,16 @@ module Transponder
 
       attr_reader :scac, :credentials
 
+      # @note Static for now. Planning to have a Broker Table that will store the customer location data. And will use
+      # that table to have authentication in the GraphQL API
+      # @todo Use address supplied by client
       def customer_location
-        # CAVEAT: Static for now. Planning to have a Broker Table that will store the customer
-        # location data. And will use that table to have authentication in the GraphQL API
         ::Interstellar::Location.new(
-          country: ActiveUtils::Country.find('US'),
-          province: 'CA',
-          city: 'Los Angeles',
-          postal_code: '90046',
-          address1: '7200 Franklin Ave Ste 219'
+          country: ActiveUtils::Country.find("US"),
+          province: "CA",
+          city: "Los Angeles",
+          postal_code: "90046",
+          address1: "7200 Franklin Ave Ste 219",
         )
       end
     end
