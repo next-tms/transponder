@@ -33,5 +33,6 @@ jobs:
           ruby-version: 3.2.2
       - run: |
           gem install bundler
+          bundle config github.com $BUNDLER_GITHUB_OAUTH_KEY
           bundle install --jobs 4 --retry 3
       - run: bundle exec rspec
