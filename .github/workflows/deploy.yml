@@ -4,6 +4,7 @@ on:
     branches:
       - main
 env:
+  BUNDLER_GITHUB_OAUTH_KEY: ${{ secrets.BUNDLER_GITHUB_OAUTH_KEY }}
   FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
 jobs:
   checks:
