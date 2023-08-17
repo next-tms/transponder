@@ -5,6 +5,8 @@ module Transponder
         require 'active_utils'
 
         def build_interstellar_contact(args)
+          args = args[:contact] if args[:contact]
+
           params = {
             company_name: args[:company_name],
             email: args[:email],
@@ -17,7 +19,7 @@ module Transponder
 
         def build_interstellar_shipment(args)
           params = {
-            accessorials: args[:accessorials] || [],
+            accessorials: args[:accessorials]&.map(&:to_sym) || [],
             declared_value_cents: args[:value_cents],
             origin: to_interstellar_shipping_address(args[:origin].to_h),
             destination: to_interstellar_shipping_address(args[:destination].to_h),
@@ -58,12 +60,14 @@ module Transponder
 
         def to_interstellar_pacakage(package)
           package[:options] ||= {}
+          package[:options]['units'] = package[:options]['units']&.to_sym
+
           Hanami.logger.debug("------#{package.inspect}")
           Interstellar::Package.new(
             package[:total_grams_or_ounces],
             package[:dimensions].to_h,
             package[:packaging_type].to_sym,
-            **package[:options]
+            **package[:options].transform_keys(&:underscore).deep_symbolize_keys
           )
         end  
       end

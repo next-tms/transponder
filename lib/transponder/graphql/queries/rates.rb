@@ -16,9 +16,11 @@ module Transponder
         def call(**args)
           shipment = build_interstellar_shipment(args)
           Hanami.logger.debug(shipment.inspect)
-
-          response = interstellar_client.find_rates(shipment: shipment)
-          Hanami.logger.debug(response.inspect)
+          begin
+            response = interstellar_client.find_rates(shipment: shipment)
+          rescue NotImplementedError => e
+            raise ::GraphQL::ExecutionError, "No rates returned from the API"
+          end
           response
         end
       end

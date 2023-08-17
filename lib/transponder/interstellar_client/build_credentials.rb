@@ -22,7 +22,7 @@ module Transponder
       def selenoid_credentials
         Interstellar::Credential.new(
           type: :selenoid,
-          base_url: URI.parse(ENV.fetch("SELENOID_BASE_URL")),
+          base_url: URI.parse(credentials[:base_url]),
           browser: :chrome,
         )
       end

@@ -9,6 +9,8 @@ module Transponder
         argument :password, String, required: false
         argument :api_key, String, required: false
         argument :proxy_url, String, required: false
+        argument :base_url, String, required: false
+        argument :browser, String, required: false
         argument :type, CarrierCredentialCategory, required: true
       end
     end
