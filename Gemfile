@@ -14,11 +14,8 @@ gem "rake"
 gem "graphql", "~> 2.0"
 gem 'active_utils', '~> 3.3', '>= 3.3.19'
 
-gem "interstellar", git: "https://github.com/next-tms/interstellar", branch: "master",
-  ref: "a11f245c79f7bb826b0d68aea186a809ca336531"
-gem "interstellar-next", git: "https://github.com/next-tms/interstellar-next", branch: "master",
-  ref: "710ff8d68403e1a4fce65467f69d5b1cf134cf38"
-gem "spacetime", git: "https://github.com/next-tms/spacetime", ref: "b430558c2458c6d674ec1803246ff5fcccacff94"
+gem "freight_kit-next", git: "https://github.com/next-tms/interstellar-next", tag: "v0.0.1"
+gem "place_kit", "~> 0.0.1"
 gem 'honeybadger'
 
 group :development, :test do
