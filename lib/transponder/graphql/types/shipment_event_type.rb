@@ -5,8 +5,8 @@ module Transponder
     module Types
       class ShipmentEventType < BaseObject
         field :type_code, String
-        field :date_time, Types::InterstellarDateTimeType
-        field :location, Types::InterstellarLocationType
+        field :date_time, Types::FreightKitDateTimeType
+        field :location, Types::FreightKitLocationType
       end
     end
   end

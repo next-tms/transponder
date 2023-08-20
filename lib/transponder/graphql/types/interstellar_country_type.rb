@@ -3,7 +3,7 @@
 module Transponder
   module GraphQL
     module Types
-      class InterstellarCountryType < BaseObject
+      class FreightKitCountryType < BaseObject
         field :alpha2, Types::ISO31661Alpha2Type, null: false
         field :alpha3, Types::ISO31661Alpha3Type, null: false
         field :numeric, String, null: true
