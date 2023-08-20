@@ -1,8 +1,8 @@
 module Transponder
   module GraphQL
     module Mutations
-      class CreatePickup < Transponder::GraphQL::Types::BaseInterstellarResolver
-        include ::Transponder::GraphQL::Concerns::InterstellarHelper
+      class CreatePickup < Transponder::GraphQL::Types::BaseFreightKitResolver
+        include ::Transponder::GraphQL::Concerns::FreightKitHelper
 
         type ::Transponder::GraphQL::Types::PickupResponseType, null: true
         
@@ -24,14 +24,14 @@ module Transponder
         argument :pro, String, required: false
 
         def call(**args)
-          shipment = build_interstellar_shipment(args)
+          shipment = build_freight_kit_shipment(args)
 
-          response = interstellar_client.create_pickup(
+          response = freight_kit_client.create_pickup(
             delivery_from: iso8601_to_datetime_with_timezone(args[:delivery_from]),
             delivery_to: iso8601_to_datetime_with_timezone(args[:delivery_to]),
             pickup_from: iso8601_to_datetime_with_timezone(args[:pickup_from]),
             pickup_to: iso8601_to_datetime_with_timezone(args[:pickup_to]),
-            dispatcher: Interstellar::Contact.new(**args[:dispatcher]),
+            dispatcher: FreightKit::Contact.new(**args[:dispatcher]),
             scac: scac,
             service: args[:service],
             shipment:

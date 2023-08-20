@@ -3,9 +3,9 @@
 module Transponder
   module GraphQL
     module Types
-      class InterstellarLocationType < BaseObject
+      class FreightKitLocationType < BaseObject
         field :city, String
-        field :country, Types::InterstellarCountryType
+        field :country, Types::FreightKitCountryType
         field :province, String
       end
     end

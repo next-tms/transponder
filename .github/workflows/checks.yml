@@ -6,7 +6,6 @@ on:
       - '!main'
   workflow_call:
 env:
-  BUNDLER_GITHUB_OAUTH_KEY: ${{ secrets.BUNDLER_GITHUB_OAUTH_KEY }}
   HANAMI_ENV: test
   RACK_ENV: test
 jobs:
@@ -20,7 +19,7 @@ jobs:
           ruby-version: 3.2.2
       - run: |
           gem install bundler
-          bundle config github.com $BUNDLER_GITHUB_OAUTH_KEY
+          bundle config github.com ${{ secrets.BUNDLER_GITHUB_OAUTH_KEY }}
           bundle install --jobs 4 --retry 3
       - run: bundle exec rubocop --only Lint/Syntax
   tests:
@@ -33,6 +32,6 @@ jobs:
           ruby-version: 3.2.2
       - run: |
           gem install bundler
-          bundle config github.com $BUNDLER_GITHUB_OAUTH_KEY
+          bundle config github.com ${{ secrets.BUNDLER_GITHUB_OAUTH_KEY }}
           bundle install --jobs 4 --retry 3
       - run: bundle exec rspec

@@ -10,11 +10,11 @@ module Transponder
 
         ::Transponder::GraphQL::Types::QueryType.class_eval do
           def carrier(scac:)
-            ::Interstellar::Carriers.all.find { |carrier| carrier.scac&.downcase == scac.to_s.downcase }
+            ::FreightKit::Carriers.all.find { |carrier| carrier.scac&.downcase == scac.to_s.downcase }
           end
 
           def carriers
-            @carriers ||= ::Interstellar::Carriers.all
+            @carriers ||= ::FreightKit::Carriers.all
           end
         end
       end

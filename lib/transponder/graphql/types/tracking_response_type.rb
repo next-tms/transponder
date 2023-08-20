@@ -8,9 +8,9 @@ module Transponder
         field :shipment_events, [Types::ShipmentEventType]
         field :attempted_delivery_date, String
         field :delivery_signature, String
-        field :destination, Types::InterstellarLocationType
+        field :destination, Types::FreightKitLocationType
         field :estimated_delivery_date, String
-        field :origin, Types::InterstellarLocationType
+        field :origin, Types::FreightKitLocationType
         field :scheduled_delivery_date, String
         field :ship_time, String
         field :shipper_address, String

@@ -1,8 +1,8 @@
 module Transponder
   module GraphQL
     module Queries
-      class Rates < Transponder::GraphQL::Types::BaseInterstellarResolver
-        include ::Transponder::GraphQL::Concerns::InterstellarHelper
+      class Rates < Transponder::GraphQL::Types::BaseFreightKitResolver
+        include ::Transponder::GraphQL::Concerns::FreightKitHelper
 
         type ::Transponder::GraphQL::Types::RateResponseType, null: true
         
@@ -14,10 +14,10 @@ module Transponder
         argument :pickup_at, ::GraphQL::Types::ISO8601DateTime, required: false
 
         def call(**args)
-          shipment = build_interstellar_shipment(args)
+          shipment = build_freight_kit_shipment(args)
           Hanami.logger.debug(shipment.inspect)
 
-          response = interstellar_client.find_rates(shipment: shipment)
+          response = freight_kit_client.find_rates(shipment: shipment)
           Hanami.logger.debug(response.inspect)
           response
         end
