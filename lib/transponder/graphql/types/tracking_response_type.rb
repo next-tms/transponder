@@ -4,15 +4,15 @@ module Transponder
   module GraphQL
     module Types
       class TrackingResponseType < BaseObject
-        field :actual_delivery_date, Types::InterstellarDateTimeType
+        field :actual_delivery_date, Types::FreightKitDateTimeType
         field :shipment_events, [Types::ShipmentEventType]
-        field :attempted_delivery_date, Types::InterstellarDateTimeType
+        field :attempted_delivery_date, Types::FreightKitDateTimeType
         field :delivery_signature, String
-        field :destination, Types::InterstellarLocationType
-        field :estimated_delivery_date, Types::InterstellarDateTimeType
-        field :origin, Types::InterstellarLocationType
-        field :scheduled_delivery_date, Types::InterstellarDateTimeType
-        field :ship_time, Types::InterstellarDateTimeType
+        field :destination, Types::FreightKitLocationType
+        field :estimated_delivery_date, Types::FreightKitDateTimeType
+        field :origin, Types::FreightKitLocationType
+        field :scheduled_delivery_date, Types::FreightKitDateTimeType
+        field :ship_time, Types::FreightKitDateTimeType
         field :shipper_address, String
         field :status, String
         field :status_code, String
