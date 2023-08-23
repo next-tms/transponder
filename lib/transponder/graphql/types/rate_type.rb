@@ -8,6 +8,8 @@ module Transponder
         field :currency, String, null: false
         field :estimate_reference, String, null: true
         field :carrier_name, String, null: true
+        field :service_name, String, null: true
+        field :scac, String, null: true
         field :with_excessive_length_fees, Boolean, null: true
         field :transit_days, Integer, null: true
         field :prices, [RateBreakdownType], null: true
