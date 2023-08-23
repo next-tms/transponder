@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Transponder
-  module InterstellarClient
+  module FreightKitClient
     class BuildClient
       def initialize(scac:, credentials:)
         @scac = scac
@@ -9,11 +9,11 @@ module Transponder
       end
 
       def call
-        carrier = ::Interstellar::Carriers.all.find { |carrier| carrier.scac&.downcase == scac.to_s.downcase }
+        carrier = ::FreightKit::Carriers.all.find { |carrier| carrier.scac&.downcase == scac.to_s.downcase }
         return nil unless carrier
 
-        interstellar_credentials = credentials.map { |credential| BuildCredentials.new(credentials: credential).call }
-        carrier.new(interstellar_credentials, customer_location: customer_location)
+        freight_kit_credentials = credentials.map { |credential| BuildCredentials.new(credentials: credential).call }
+        carrier.new(freight_kit_credentials, customer_location: customer_location)
       end
 
       private
@@ -24,7 +24,7 @@ module Transponder
       # that table to have authentication in the GraphQL API
       # @todo Use address supplied by client
       def customer_location
-        ::Interstellar::Location.new(
+        ::FreightKit::Location.new(
           country: ActiveUtils::Country.find("US"),
           province: "CA",
           city: "Los Angeles",

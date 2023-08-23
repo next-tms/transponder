@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Transponder
-  module InterstellarClient
+  module FreightKitClient
     class BuildCredentials
       def initialize(credentials:)
         @type = credentials[:type]
@@ -12,7 +12,7 @@ module Transponder
         return nil if [:api, :api_key, :api_proxy, :selenoid, :website].exclude?(type)
         return selenoid_credentials if type == :selenoid
 
-        Interstellar::Credential.new(**credentials)
+        FreightKit::Credential.new(**credentials)
       end
 
       private
@@ -20,7 +20,7 @@ module Transponder
       attr_reader :type, :credentials
 
       def selenoid_credentials
-        Interstellar::Credential.new(
+        FreightKit::Credential.new(
           type: :selenoid,
           base_url: URI.parse(credentials[:base_url]),
           browser: :chrome,

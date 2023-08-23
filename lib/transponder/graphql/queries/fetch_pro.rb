@@ -1,7 +1,7 @@
 module Transponder
   module GraphQL
     module Queries
-      class FetchPro < Transponder::GraphQL::Types::BaseInterstellarResolver
+      class FetchPro < Transponder::GraphQL::Types::BaseFreightKitResolver
         type String, null: true
 
         argument :pickup_number, String, required: true
@@ -18,7 +18,7 @@ module Transponder
               pickup_on.to_date + 1.day,
               pickup_on.to_date + 2.days,
             ].each do |date|
-              pro = interstellar_client.find_tracking_number_from_pickup_number(pickup_number, date)
+              pro = freight_kit_client.find_tracking_number_from_pickup_number(pickup_number, date)
               break if pro.present?
             end
           end
@@ -27,7 +27,7 @@ module Transponder
           return unless dispatched_at
 
           [dispatched_at.to_date, dispatched_at.to_date + 1.day].each do |date|
-            pro = interstellar_client.find_tracking_number_from_pickup_number(pickup_number, date)
+            pro = freight_kit_client.find_tracking_number_from_pickup_number(pickup_number, date)
             break if pro.present?
           end
 

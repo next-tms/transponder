@@ -3,13 +3,13 @@
 module Transponder
   module GraphQL
     module Types
-      class BaseInterstellarResolver < ::GraphQL::Schema::Resolver
+      class BaseFreightKitResolver < ::GraphQL::Schema::Resolver
         argument :scac, String, required: true
         argument :credentials, [::Transponder::GraphQL::Types::CarrierCredentialInputType], required: true
 
         def resolve(scac:, credentials:, **args)
           @scac = scac
-          @interstellar_client = ::Transponder::InterstellarClient::BuildClient.new(
+          @freight_kit_client = ::Transponder::FreightKitClient::BuildClient.new(
             scac: scac,
             credentials: credentials
           ).call
@@ -23,7 +23,7 @@ module Transponder
 
         private
 
-        attr_reader :scac, :interstellar_client
+        attr_reader :scac, :freight_kit_client
       end
     end
   end
