@@ -5,6 +5,9 @@ module Transponder
     module Types
       class CarrierCredentialCategory < BaseEnum
         value "api", value: :api
+        value "api_key", value: :api_key
+        value "api_proxy", value: :api_proxy
+        value "selenoid", value: :selenoid
         value "website", value: :website
       end
     end
