@@ -4,11 +4,12 @@ on:
     branches:
       - main
 env:
-  BUNDLER_GITHUB_OAUTH_KEY: ${{ secrets.BUNDLER_GITHUB_OAUTH_KEY }}
-  FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+  BUNDLER_GITHUB_OAUTH_KEY: 
 jobs:
   checks:
     uses: ./.github/workflows/checks.yml
+    secrets:
+      BUNDLER_GITHUB_OAUTH_KEY: ${{ secrets.BUNDLER_GITHUB_OAUTH_KEY }}
   deploy:
     name: Push
     needs: checks
@@ -16,4 +17,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: superfly/flyctl-actions/setup-flyctl@master
-      - run: flyctl deploy --remote-only --build-arg BUNDLER_GITHUB_OAUTH_KEY="$BUNDLER_GITHUB_OAUTH_KEY"
+      - run: |
+        ${{ secrets.FLY_API_TOKEN }} \
+        flyctl deploy \
+          --remote-only \
+          --build-arg BUNDLER_GITHUB_OAUTH_KEY="${{ secrets.BUNDLER_GITHUB_OAUTH_KEY }}"
