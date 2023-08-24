@@ -5,6 +5,9 @@ on:
       - '**'
       - '!main'
   workflow_call:
+    secrets:
+      BUNDLER_GITHUB_OAUTH_KEY:
+        required: true
 env:
   BUNDLER_GITHUB_OAUTH_KEY: ${{ secrets.BUNDLER_GITHUB_OAUTH_KEY }}
   HANAMI_ENV: test
