@@ -10,7 +10,7 @@ module Transponder
 
       def call
         carrier = ::FreightKit::Carriers.all.find { |carrier| carrier.scac&.downcase == scac.to_s.downcase }
-        return nil unless carrier
+        return unless carrier
 
         freight_kit_credentials = credentials.map { |credential| BuildCredentials.new(credentials: credential).call }
         carrier.new(freight_kit_credentials, customer_location: customer_location)
@@ -25,11 +25,11 @@ module Transponder
       # @todo Use address supplied by client
       def customer_location
         ::FreightKit::Location.new(
-          country: ActiveUtils::Country.find("US"),
-          province: "CA",
-          city: "Los Angeles",
-          postal_code: "90046",
-          address1: "7200 Franklin Ave Ste 219",
+          country: ActiveUtils::Country.find('US'),
+          province: 'CA',
+          city: 'Los Angeles',
+          postal_code: '90046',
+          address1: '7200 Franklin Ave Ste 219',
         )
       end
     end

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require "freight_kit"
-require "freight_kit-next"
+require 'freight_kit'
+require 'freight_kit-next'
 
 module Transponder
   module GraphQL
@@ -11,10 +11,10 @@ module Transponder
         include ::GraphQL::Types::Relay::HasNodeField
         include ::GraphQL::Types::Relay::HasNodesField
 
-        field :tracking_info, resolver: ::Transponder::GraphQL::Queries::Tracking
         field :document, resolver: ::Transponder::GraphQL::Queries::Document
-        field :fetch_rates, resolver: ::Transponder::GraphQL::Queries::Rates
         field :fetch_pro, resolver: ::Transponder::GraphQL::Queries::FetchPro
+        field :fetch_rates, resolver: ::Transponder::GraphQL::Queries::Rates
+        field :tracking_info, resolver: ::Transponder::GraphQL::Queries::Tracking
 
         multiple_fields ::Transponder::GraphQL::Queries::Carrier
       end
