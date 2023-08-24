@@ -3,8 +3,6 @@ on:
   push:
     branches:
       - main
-env:
-  BUNDLER_GITHUB_OAUTH_KEY: 
 jobs:
   checks:
     uses: ./.github/workflows/checks.yml
