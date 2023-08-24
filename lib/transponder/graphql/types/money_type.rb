@@ -4,13 +4,12 @@ module Transponder
   module GraphQL
     module Types
       class MoneyType < BaseObject
-        # Duck Typing Money Object from money-rails gem
-        field :value, Float, null: true
+        field :currency, String, null: true
+        field :value, Float, null: true # duck typing Money object from money-rails gem
+
         def value
           object
         end
-
-        field :currency, String, null: true
 
         def currency
           object.try(:currency) || 'USD'

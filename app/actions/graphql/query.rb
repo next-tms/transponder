@@ -10,12 +10,11 @@ module Transponder
           Hanami.logger.debug(variables.inspect)
           begin
             data = Transponder::GraphQL::TransponderSchema
-                  .execute(
-                    request.params[:query],
-                    operation_name: request.params[:operationName],
-                    variables: variables,
-                  )
-
+                   .execute(
+                     request.params[:query],
+                     operation_name: request.params[:operationName],
+                     variables: variables,
+                   )
           rescue NotImplementedError, StandardError => e
             response.format = :json
             response.body = { error: e.message }

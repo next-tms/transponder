@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 module Transponder
   module GraphQL
     module Queries
       class FetchPro < Transponder::GraphQL::Types::BaseFreightKitResolver
         type String, null: true
 
+        argument :dispatched_at, ::GraphQL::Types::ISO8601Date, required: false
         argument :pickup_number, String, required: true
         argument :pickup_on, ::GraphQL::Types::ISO8601Date, required: false
-        argument :dispatched_at, ::GraphQL::Types::ISO8601Date, required: false
 
         def call(pickup_number:, pickup_on: nil, dispatched_at: nil)
           pro = nil

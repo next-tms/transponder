@@ -4,7 +4,7 @@ module Transponder
   module GraphQL
     module Types
       class RateBreakdownType < BaseObject
-        field :cents, MoneyType, null: true, method: :cents
+        field :cents, MoneyType, null: true
         field :description, String, null: true
       end
     end

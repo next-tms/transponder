@@ -9,7 +9,7 @@ module Transponder
       end
 
       def call
-        return nil if [:api, :api_key, :api_proxy, :selenoid, :website].exclude?(type)
+        return if %i[api api_key api_proxy selenoid website].exclude?(type)
         return selenoid_credentials if type == :selenoid
 
         FreightKit::Credential.new(**credentials)

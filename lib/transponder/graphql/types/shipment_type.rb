@@ -7,8 +7,8 @@ module Transponder
         field :destination, AddressType, null: false
         field :origin, AddressType, null: false
 
-        field :packages, [PackageType], null: false
         field :accessorials, [AccessorialCategory], null: false
+        field :packages, [PackageType], null: false
       end
     end
   end

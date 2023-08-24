@@ -4,21 +4,21 @@ module Transponder
   module GraphQL
     module Types
       class BaseFreightKitResolver < ::GraphQL::Schema::Resolver
-        argument :scac, String, required: true
         argument :credentials, [::Transponder::GraphQL::Types::CarrierCredentialInputType], required: true
+        argument :scac, String, required: true
 
         def resolve(scac:, credentials:, **args)
           @scac = scac
           @freight_kit_client = ::Transponder::FreightKitClient::BuildClient.new(
             scac: scac,
-            credentials: credentials
+            credentials: credentials,
           ).call
 
           call(**args)
         rescue StandardError => e
           raise ::GraphQL::ExecutionError, e.message
-        rescue NotImplementedError => e
-          raise ::GraphQL::ExecutionError, "No response returned from the API"
+        rescue NotImplementedError
+          raise ::GraphQL::ExecutionError, 'No response returned from the API'
         end
 
         private
