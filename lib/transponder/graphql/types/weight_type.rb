@@ -5,8 +5,8 @@ module Transponder
     module Types
       class WeightType < BaseObject
         field :g, Float, null: false
-        field :lb, Float, null: false
         field :kg, Float, null: false
+        field :lb, Float, null: false
         field :oz, Float, null: false
 
         def g
