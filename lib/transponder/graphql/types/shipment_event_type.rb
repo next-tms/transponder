@@ -4,9 +4,9 @@ module Transponder
   module GraphQL
     module Types
       class ShipmentEventType < BaseObject
-        field :type_code, String
         field :date_time, Types::FreightKitDateTimeType
         field :location, Types::FreightKitLocationType
+        field :type_code, String
       end
     end
   end

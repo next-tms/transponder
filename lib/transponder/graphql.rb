@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "graphql"
+require 'graphql'
 
 module Transponder
   module GraphQL; end

@@ -4,8 +4,8 @@ module Transponder
   module GraphQL
     module Types
       class PackageType < BaseObject
-        field :quantity, Integer, null: false
         field :packaging, PackagingType, null: false
+        field :quantity, Integer, null: false
 
         field :height, LengthType, null: false
         field :length, LengthType, null: false
