@@ -17,8 +17,8 @@ module Transponder
           call(**args)
         rescue StandardError => e
           raise ::GraphQL::ExecutionError, e.message
-        rescue NotImplementedError
-          raise ::GraphQL::ExecutionError, 'No response returned from the API'
+        rescue NotImplementedError => e
+          raise ::GraphQL::ExecutionError, e.message
         end
 
         private

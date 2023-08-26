@@ -54,10 +54,12 @@ module Transponder
         def iso8601_to_time_with_timezone(iso8601)
           return unless iso8601
 
-          timezone_offset = iso8601.to_time.offset.numerator
+          # rubocop:disable Style/DateTime
+          timezone_offset = iso8601.to_datetime.offset.numerator
           tz = ActiveSupport::TimeZone[timezone_offset]
 
-          iso8601.to_time.in_time_zone(tz)
+          iso8601.to_datetime.in_time_zone(tz)
+          # rubocop:enable Style/DateTime
         end
 
         def to_freight_kit_pacakage(package)
