@@ -3,6 +3,12 @@
 module Transponder
   module FreightKitClient
     class BuildClient
+      class UnknownSCACError < StandardError
+        def initialize(scac)
+          super("No API exists for carrier with SCAC \"#{scac}\"")
+        end
+      end
+
       def initialize(scac:, credentials:)
         @scac = scac
         @credentials = credentials
@@ -10,7 +16,7 @@ module Transponder
 
       def call
         carrier = ::FreightKit::Carriers.all.find { |carrier| carrier.scac&.downcase == scac.to_s.downcase }
-        return unless carrier
+        raise UnknownSCACError, scac unless carrier
 
         freight_kit_credentials = credentials.map { |credential| BuildCredentials.new(credentials: credential).call }
         carrier.new(freight_kit_credentials, customer_location: customer_location)
