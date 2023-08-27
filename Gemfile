@@ -15,6 +15,7 @@ gem 'graphql', '~> 2.0'
 gem 'active_utils', '~> 3.3', '>= 3.3.19'
 
 gem 'freight_kit-next', git: 'https://github.com/next-tms/freight_kit-next', tag: 'v0.0.1'
+gem 'money', '~> 6.16.0'
 
 gem 'honeybadger'
 
@@ -27,6 +28,7 @@ group :cli, :development do
 end
 
 group :cli, :development, :test do
+  gem 'faker', '~> 3.2.1'
   gem 'hanami-rspec'
   gem 'rubocop-next', '~> 1.0.4'
 end
