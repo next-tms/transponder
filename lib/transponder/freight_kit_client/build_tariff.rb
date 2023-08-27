@@ -22,21 +22,14 @@ module Transponder
 
                               max_length = if overlength_rule[:maximum_length].present?
                                              unit = overlength_rule[:maximum_length].keys.first
-                                             value = overlength_rule.dig(
-                                               :maximum_length, unit
-                                             )
-                                             Measured::Length.new(
-                                               value,
-                                               unit,
-                                             ).convert_to(:inch)
+                                             value = overlength_rule.dig(:maximum_length, unit)
+
+                                             Measured::Length.new(value, unit).convert_to(:inch)
                                            end
 
                               unit = overlength_rule[:minimum_length].keys.first
                               value = overlength_rule.dig(:minimum_length, unit)
-                              min_length = Measured::Length.new(
-                                value,
-                                unit,
-                              ).convert_to(:inch)
+                              min_length = Measured::Length.new(value, unit).convert_to(:inch)
 
                               { fee_cents:, max_length:, min_length: }
                             end

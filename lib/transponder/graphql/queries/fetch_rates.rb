@@ -20,10 +20,10 @@ module Transponder
           shipment = build_freight_kit_shipment(args)
 
           freight_kit_client.find_rates(shipment:)
+        rescue ::FreightKit::UnserviceableError => e
+          raise ::GraphQL::ExecutionError, e.message.presence || 'Shipment not serviceable by carrier'
         rescue NotImplementedError
           raise ::GraphQL::ExecutionError, 'Rating not supported by carrier'
-        rescue FreightKit::UnserviceableError => e
-          raise ::GraphQL::ExecutionError, e.message.presence || 'Shipment not serviceable by carrier'
         end
       end
     end
