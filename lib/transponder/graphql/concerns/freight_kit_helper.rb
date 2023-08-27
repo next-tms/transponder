@@ -22,7 +22,7 @@ module Transponder
         def build_freight_kit_shipment(args)
           params = {
                      accessorials: args[:accessorials]&.map(&:to_sym) || [],
-                     declared_value_cents: args[:value_cents],
+                     declared_value_cents: args.dig(:value, :fractional),
                      origin: to_freight_kit_shipping_address(args[:origin].to_h),
                      destination: to_freight_kit_shipping_address(args[:destination].to_h),
                      packages: args[:packages].map { |package| to_freight_kit_pacakage(package.to_h) },

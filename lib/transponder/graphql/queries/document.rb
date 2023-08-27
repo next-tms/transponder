@@ -10,9 +10,10 @@ module Transponder
         argument :tracking_number, String, required: true
 
         def call(document_type:, tracking_number:)
-          response = freight_kit_client.send(document_type, tracking_number)
-          Hanami.logger.debug(response.inspect)
-          response
+          freight_kit_client.send(document_type, tracking_number)
+        rescue NotImplementedError
+          message = "#{document_type} retrieval not supported by carrier"
+          raise ::GraphQL::ExecutionError, message
         end
       end
     end

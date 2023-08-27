@@ -3,7 +3,7 @@
 module Transponder
   module GraphQL
     module Queries
-      class Rates < Transponder::GraphQL::Types::BaseFreightKitResolver
+      class FetchRates < Transponder::GraphQL::Types::BaseFreightKitResolver
         include ::Transponder::GraphQL::Concerns::FreightKitHelper
 
         type ::Transponder::GraphQL::Types::RateResponseType, null: true
@@ -13,17 +13,17 @@ module Transponder
         argument :origin, Transponder::GraphQL::Types::LocationInputType, required: false
         argument :packages, [Transponder::GraphQL::Types::PackageInputType], required: true
         argument :pickup_at, ::GraphQL::Types::ISO8601DateTime, required: false
-        argument :value_cents, Float, required: false
+        argument :tariff, Transponder::GraphQL::Types::TariffInputType, required: false
+        argument :value, Transponder::GraphQL::Types::MoneyInputType, required: false
 
         def call(**args)
           shipment = build_freight_kit_shipment(args)
-          Hanami.logger.debug(shipment.inspect)
-          begin
-            response = freight_kit_client.find_rates(shipment: shipment)
-          rescue NotImplementedError
-            raise ::GraphQL::ExecutionError, 'No rates returned from the API'
-          end
-          response
+
+          freight_kit_client.find_rates(shipment:)
+        rescue NotImplementedError
+          raise ::GraphQL::ExecutionError, 'Rating not supported by carrier'
+        rescue FreightKit::UnserviceableError => e
+          raise ::GraphQL::ExecutionError, e.message.presence || 'Shipment not serviceable by carrier'
         end
       end
     end

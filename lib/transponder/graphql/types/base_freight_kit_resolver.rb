@@ -5,25 +5,28 @@ module Transponder
     module Types
       class BaseFreightKitResolver < ::GraphQL::Schema::Resolver
         argument :credentials, [::Transponder::GraphQL::Types::CarrierCredentialInputType], required: true
+        argument :customer_location, ::Transponder::GraphQL::Types::CustomerLocationInputType, required: true
         argument :scac, String, required: true
+        argument :tariff, ::Transponder::GraphQL::Types::TariffInputType, required: false
 
-        def resolve(scac:, credentials:, **args)
+        def resolve(credentials:, customer_location:, scac:, tariff: nil, **args)
+          @customer_location = customer_location
           @scac = scac
-          @freight_kit_client = ::Transponder::FreightKitClient::BuildClient.new(
-            scac: scac,
-            credentials: credentials,
-          ).call
+          @tariff = tariff
+
+          client_args = { credentials:, customer_location:, scac: }
+          client_args[:tariff] = tariff if tariff.present?
+
+          @freight_kit_client = ::Transponder::FreightKitClient::BuildClient.new(**client_args).call
 
           call(**args)
-        rescue StandardError => e
-          raise ::GraphQL::ExecutionError, e.message
-        rescue NotImplementedError => e
+        rescue Transponder::FreightKitClient::BuildClient::CarrierNotImplmentedError, NotImplementedError => e
           raise ::GraphQL::ExecutionError, e.message
         end
 
         private
 
-        attr_reader :scac, :freight_kit_client
+        attr_reader :freight_kit_client, :scac
       end
     end
   end

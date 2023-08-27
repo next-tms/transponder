@@ -3,34 +3,46 @@
 module Transponder
   module FreightKitClient
     class BuildClient
-      def initialize(scac:, credentials:)
-        @scac = scac
+      class CarrierNotImplmentedError < NotImplementedError; end
+
+      def initialize(credentials:, customer_location:, scac:, tariff: nil)
         @credentials = credentials
+        @customer_location = customer_location
+        @scac = scac
+        @tariff = tariff
       end
 
       def call
         carrier = ::FreightKit::Carriers.all.find { |carrier| carrier.scac&.downcase == scac.to_s.downcase }
-        return unless carrier
+        raise CarrierNotImplmentedError, 'Carrier not supported' unless carrier
 
-        freight_kit_credentials = credentials.map { |credential| BuildCredentials.new(credentials: credential).call }
-        carrier.new(freight_kit_credentials, customer_location: customer_location)
+        # @note FreightKit validates that tariff is a FreightKit::Tariff when it's present
+        kwargs = { customer_location: freight_kit_customer_location }
+        kwargs[:tariff] = freight_kit_tariff if freight_kit_tariff.present?
+
+        carrier.new(freight_kit_credentials, **kwargs)
       end
 
       private
 
-      attr_reader :scac, :credentials
+      attr_reader :credentials, :customer_location, :scac, :tariff
 
-      # @note Static for now. Planning to have a Broker Table that will store the customer location data. And will use
-      # that table to have authentication in the GraphQL API
-      # @todo Use address supplied by client
-      def customer_location
-        ::FreightKit::Location.new(
-          country: ActiveUtils::Country.find('US'),
-          province: 'CA',
-          city: 'Los Angeles',
-          postal_code: '90046',
-          address1: '7200 Franklin Ave Ste 219',
-        )
+      def freight_kit_credentials
+        credentials.map { |credential| BuildCredentials.new(credentials: credential).call }
+      end
+
+      def freight_kit_customer_location
+        attributes = customer_location.to_hash.except(:country_code)
+        attributes[:contact] = ::FreightKit::Contact.new(**customer_location[:contact])
+        attributes[:country] = ActiveUtils::Country.find(customer_location[:country_code])
+
+        ::FreightKit::Location.new(**attributes)
+      end
+
+      def freight_kit_tariff
+        return if tariff.blank?
+
+        @freight_kit_tariff ||= BuildTariff.new(tariff:).call
       end
     end
   end

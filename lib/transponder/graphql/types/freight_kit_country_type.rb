@@ -5,10 +5,8 @@ module Transponder
     module Types
       class FreightKitCountryType < BaseObject
         field :alpha2, Types::ISO31661Alpha2Type, null: false
-
-        field :name, String
-
         field :alpha3, Types::ISO31661Alpha3Type, null: false
+        field :name, String
         field :numeric, String, null: true
 
         def alpha2
