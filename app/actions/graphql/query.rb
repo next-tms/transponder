@@ -10,7 +10,7 @@ module Transponder
           required(:query).filled.value(:string)
 
           optional(:operationName).filled.value(:string)
-          optional(:variables).filled.hash
+          optional(:variables)
         end
 
         def handle(request, response)
