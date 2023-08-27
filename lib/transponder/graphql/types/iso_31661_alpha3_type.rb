@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'active_utils'
+
 module Transponder
   module GraphQL
     module Types
