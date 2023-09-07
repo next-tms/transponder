@@ -3,27 +3,21 @@
 module Transponder
   module GraphQL
     module Queries
-      class FetchRates < Transponder::GraphQL::Types::BaseFreightKitResolver
-        include ::Transponder::GraphQL::Concerns::FreightKitHelper
-
+      class FetchRates < ::GraphQL::Schema::Resolver
         type ::Transponder::GraphQL::Types::RateResponseType, null: true
 
-        argument :accessorials, [String], required: false
-        argument :destination, Transponder::GraphQL::Types::LocationInputType, required: false
-        argument :origin, Transponder::GraphQL::Types::LocationInputType, required: false
-        argument :packages, [Transponder::GraphQL::Types::PackageInputType], required: true
+        argument :carrier, Types::CarrierInputType, required: true
         argument :pickup_at, ::GraphQL::Types::ISO8601DateTime, required: false
-        argument :tariff, Transponder::GraphQL::Types::TariffInputType, required: false
-        argument :value, Transponder::GraphQL::Types::MoneyInputType, required: false
+        argument :shipment, Types::ShipmentInputType, required: true
 
-        def call(**args)
-          shipment = build_freight_kit_shipment(args)
-
-          freight_kit_client.find_rates(shipment:)
+        def resolve(carrier:, shipment:, pickup_at:)
+          carrier.find_rates(shipment:)
         rescue ::FreightKit::UnserviceableError => e
           raise ::GraphQL::ExecutionError, e.message.presence || 'Shipment not serviceable by carrier'
         rescue NotImplementedError
           raise ::GraphQL::ExecutionError, 'Rating not supported by carrier'
+        rescue Types::CarrierInputType::CarrierNotFoundError => e
+          raise ::GraphQL::ExecutionError, e.message
         end
       end
     end

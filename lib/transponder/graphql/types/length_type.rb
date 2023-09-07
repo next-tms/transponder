@@ -17,12 +17,12 @@ module Transponder
           object.convert_to(:ft).value
         end
 
-        def resolve_in
-          object.convert_to(:in).value
-        end
-
         def m
           object.convert_to(:m).value
+        end
+
+        def resolve_in
+          object.convert_to(:in).value
         end
       end
     end

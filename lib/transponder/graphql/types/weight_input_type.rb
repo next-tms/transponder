@@ -5,12 +5,12 @@ require 'measured'
 module Transponder
   module GraphQL
     module Types
-      class LengthInputType < ::GraphQL::Schema::InputObject
+      class WeightInputType < ::GraphQL::Schema::InputObject
         argument :amount, Float, required: true
-        argument :unit, LengthUnitCategory, required: true
+        argument :unit, WeightUnitCategory, required: true
 
         def prepare
-          ::Measured::Length.new(amount, unit)
+          ::Measured::Weight.new(amount, unit)
         end
       end
     end

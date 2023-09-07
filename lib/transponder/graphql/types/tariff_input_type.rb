@@ -5,6 +5,10 @@ module Transponder
     module Types
       class TariffInputType < ::GraphQL::Schema::InputObject
         argument :overlength_rules, [OverlengthRuleInputType], required: true
+
+        def prepare
+          FreightKit::Tariff.new(overlength_rules:)
+        end
       end
     end
   end

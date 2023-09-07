@@ -30,7 +30,7 @@ module Transponder
           variables = request.params[:variables]
 
           Hanami.logger.debug(query)
-          Hanami.logger.debug(variables)
+          Hanami.logger.debug(variables.to_json)
 
           data = Transponder::GraphQL::TransponderSchema
                  .execute(
