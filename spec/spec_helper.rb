@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'faker'
+
 require 'pathname'
 SPEC_ROOT = Pathname(__dir__).realpath.freeze
 

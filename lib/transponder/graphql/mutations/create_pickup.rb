@@ -3,44 +3,31 @@
 module Transponder
   module GraphQL
     module Mutations
-      class CreatePickup < Transponder::GraphQL::Types::BaseFreightKitResolver
-        include ::Transponder::GraphQL::Concerns::FreightKitHelper
+      class CreatePickup < ::GraphQL::Schema::Resolver
+        type ::Transponder::GraphQL::Types::PickupResponseType, null: false
 
-        type ::Transponder::GraphQL::Types::PickupResponseType, null: true
-
+        argument :carrier, Types::CarrierInputType, required: true
         argument :delivery_from, ::GraphQL::Types::ISO8601DateTime, required: false
         argument :delivery_to, ::GraphQL::Types::ISO8601DateTime, required: false
-        argument :dispatcher, ::Transponder::GraphQL::Types::ContactInputType, required: false
-        argument :pickup_from, ::GraphQL::Types::ISO8601DateTime, required: false
-        argument :pickup_to, ::GraphQL::Types::ISO8601DateTime, required: false
+        argument :dispatcher, ::Transponder::GraphQL::Types::ContactInputType, required: true
+        argument :pickup_from, ::GraphQL::Types::ISO8601DateTime, required: true
+        argument :pickup_to, ::GraphQL::Types::ISO8601DateTime, required: true
+        argument :scac, String, required: true
         argument :service, String, required: false
+        argument :shipment, ::Transponder::GraphQL::Types::ShipmentInputType, required: true
 
-        # Shipment related
-        argument :accessorials, [String], required: false
-        argument :destination, Transponder::GraphQL::Types::LocationInputType, required: false
-        argument :order_number, String, required: false
-        argument :origin, Transponder::GraphQL::Types::LocationInputType, required: false
-        argument :packages, [Transponder::GraphQL::Types::PackageInputType], required: true
-        argument :po_number, String, required: false
-        argument :pro, String, required: false
-        argument :value_cents, Float, required: false
-
-        def call(**args)
-          shipment = build_freight_kit_shipment(args)
-
-          response = freight_kit_client.create_pickup(
-            delivery_from: iso8601_to_datetime_with_timezone(args[:delivery_from]),
-            delivery_to: iso8601_to_datetime_with_timezone(args[:delivery_to]),
-            pickup_from: iso8601_to_datetime_with_timezone(args[:pickup_from]),
-            pickup_to: iso8601_to_datetime_with_timezone(args[:pickup_to]),
-            dispatcher: FreightKit::Contact.new(**args[:dispatcher]),
-            scac: scac,
-            service: args[:service],
+        def resolve(carrier:, delivery_from: nil, delivery_to: nil, dispatcher:, pickup_from:, pickup_to:, scac:,
+          service: nil, shipment:)
+          carrier.create_pickup(
+            delivery_from:,
+            delivery_to:,
+            dispatcher:,
+            pickup_from:,
+            pickup_to:,
+            scac:,
+            service:,
             shipment:,
           )
-
-          Hanami.logger.debug(response.inspect)
-          response
         end
       end
     end

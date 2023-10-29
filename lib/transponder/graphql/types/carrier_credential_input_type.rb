@@ -12,6 +12,20 @@ module Transponder
         argument :proxy_url, String, required: false
         argument :type, CarrierCredentialCategory, required: true
         argument :username, String, required: false
+
+        def prepare
+          if type == :selenoid
+            return FreightKit::Credential.new(
+              type: :selenoid,
+              base_url: URI.parse(base_url),
+              browser: :chrome,
+            )
+          end
+
+          args = { account:, api_key:, base_url:, browser:, password:, proxy_url:, type:, username: }.compact
+
+          FreightKit::Credential.new(**args)
+        end
       end
     end
   end
