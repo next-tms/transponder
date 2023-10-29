@@ -17,7 +17,7 @@ module Transponder
           if type == :selenoid
             return FreightKit::Credential.new(
               type: :selenoid,
-              base_url: URI.parse(base_url),
+              base_url: ENV.fetch('SELENOID_BASE_URL'),
               browser: :chrome,
             )
           end
