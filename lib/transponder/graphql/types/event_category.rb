@@ -19,6 +19,7 @@ module Transponder
                    pickup_driver_assigned
                    pickup_information_received_by_carrier
                    pickup_information_sent_to_carrier
+                   pickup_scheduled
                    sailed
                    trailer_closed
                    trailer_unloaded
