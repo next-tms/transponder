@@ -1,17 +1,15 @@
 # frozen_string_literal: true
 
-require 'freight_kit'
-
 module Transponder
   module GraphQL
     module Types
-      class LocationInputType < ::GraphQL::Schema::InputObject
-        argument :address1, String, required: false
-        argument :city, String, required: false
-        argument :contact, ContactInputType, required: false
+      class CustomerLocationInputType < ::GraphQL::Schema::InputObject
+        argument :address1, String, required: true
+        argument :city, String, required: true
+        argument :contact, ContactInputType, required: true
         argument :country, CountryInputType, required: true
-        argument :postal_code, String, required: false
-        argument :region_abbreviation, String, required: false
+        argument :postal_code, String, required: true
+        argument :region_abbreviation, String, required: true
 
         def prepare
           FreightKit::Location.new(

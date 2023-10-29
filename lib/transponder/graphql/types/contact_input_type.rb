@@ -8,6 +8,10 @@ module Transponder
         argument :email, String, required: false
         argument :name, String, required: false
         argument :phone, String, required: false
+
+        def prepare
+          FreightKit::Contact.new(company_name:, email:, name:, phone:)
+        end
       end
     end
   end

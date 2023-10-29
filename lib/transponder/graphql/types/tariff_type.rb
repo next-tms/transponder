@@ -3,8 +3,8 @@
 module Transponder
   module GraphQL
     module Types
-      class PickupLabelType < BaseObject
-        field :data, String, null: true
+      class TariffType < BaseObject
+        field :overlength_rules, [OverlengthRuleType], null: false
       end
     end
   end
