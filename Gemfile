@@ -15,7 +15,7 @@ gem 'graphql', '~> 2.0'
 
 # @note GraphQL types depend on these:
 gem 'active_utils', '~> 3.3', '>= 3.3.19'
-gem 'freight_kit-next', git: 'https://github.com/next-tms/freight_kit-next', tag: 'v0.0.9'
+gem 'freight_kit-next', git: 'https://github.com/next-tms/freight_kit-next', tag: 'v0.1.0'
 gem 'mimemagic', '~> 0.4.3'
 gem 'money', '~> 6.16.0'
 
