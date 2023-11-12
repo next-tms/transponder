@@ -30,7 +30,7 @@ module Transponder
           return unless dispatched_on
 
           [dispatched_on, dispatched_on + 1.day].each do |date|
-            pro = freight_kit_client.find_tracking_number_from_pickup_number(pickup_number, date)
+            pro = carrier.find_tracking_number_from_pickup_number(pickup_number, date)
             break if pro.present?
           end
 
