@@ -7,10 +7,9 @@ module Transponder
         type ::Transponder::GraphQL::Types::RateResponseType, null: true
 
         argument :carrier, Types::CarrierInputType, required: true
-        argument :pickup_at, ::GraphQL::Types::ISO8601DateTime, required: false
         argument :shipment, Types::ShipmentInputType, required: true
 
-        def resolve(carrier:, shipment:, pickup_at:)
+        def resolve(carrier:, shipment:)
           carrier.find_rates(shipment:)
         rescue ::FreightKit::UnserviceableError => e
           raise ::GraphQL::ExecutionError, e.message.presence || 'Shipment not serviceable by carrier'

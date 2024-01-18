@@ -10,7 +10,7 @@ module Transponder
         argument :order_number, String, required: false
         argument :origin, LocationInputType, required: true
         argument :packages, [PackageInputType], required: true
-        argument :pickup_at, DateTimeInputType, required: false
+        argument :pickup_at, DateTimeInputType, required: true
         argument :po_number, String, required: false
         argument :pro_number, String, required: false
 
