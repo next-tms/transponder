@@ -37,7 +37,7 @@ module Transponder
           pro
         rescue NotImplementedError
           message = 'Pro number retrieval from pickup number not supported by carrier'
-          raise ::GraphQL::ExecutionError, message
+          raise ::GraphQL::ExecutionError, message, extensions: { code: 'NOT_IMPLEMENTED_ERROR' }
         end
       end
     end

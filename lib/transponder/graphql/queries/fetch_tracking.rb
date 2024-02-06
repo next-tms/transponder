@@ -12,7 +12,8 @@ module Transponder
         def resolve(carrier:, tracking_number:)
           carrier.find_tracking_info(tracking_number)
         rescue NotImplementedError
-          raise ::GraphQL::ExecutionError, 'Tracking not supported by carrier'
+          message = 'Tracking not supported by carrier'
+          raise ::GraphQL::ExecutionError, message, extensions: { code: 'NOT_IMPLEMENTED_ERROR' }
         end
       end
     end
