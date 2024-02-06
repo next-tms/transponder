@@ -4,7 +4,6 @@ module Transponder
   module GraphQL
     module Types
       class RateResponseType < BaseObject
-        field :error, String, null: true
         field :rates, [Types::RateType]
         field :request, ::GraphQL::Types::JSON, null: true
         field :response, ::GraphQL::Types::JSON, null: true

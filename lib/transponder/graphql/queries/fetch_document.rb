@@ -14,7 +14,7 @@ module Transponder
           carrier.public_send(document_type, tracking_number)
         rescue NotImplementedError
           message = "#{document_type} retrieval not supported by carrier"
-          raise ::GraphQL::ExecutionError, message
+          raise ::GraphQL::ExecutionError, message, extensions: { code: 'NOT_IMPLEMENTED_ERROR' }
         end
       end
     end
