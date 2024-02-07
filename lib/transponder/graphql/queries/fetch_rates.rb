@@ -7,6 +7,7 @@ module Transponder
         EXCEPTIONS = {
                        ::FreightKit::InvalidCredentialsError => { code: 'INVALID_CREDENTIALS_ERROR' },
                        ::FreightKit::ResponseError => { code: 'API_ERROR', message: 'API error' },
+                       ::FreightKit::UnserviceableAccessorialsError => { code: 'NOT_SERVICEABLE_ERROR' },
                        ::FreightKit::UnserviceableError => { code: 'NOT_SERVICEABLE_ERROR' },
                        ::NotImplementedError => {
                                                   code: 'NOT_IMPLEMENTED_ERROR',
