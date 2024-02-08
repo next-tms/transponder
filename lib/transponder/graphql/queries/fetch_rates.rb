@@ -5,14 +5,12 @@ module Transponder
     module Queries
       class FetchRates < ::GraphQL::Schema::Resolver
         EXCEPTIONS = {
+                       ::FreightKit::ExpiredCredentialsError => { code: 'INVALID_CREDENTIALS_ERROR' },
                        ::FreightKit::InvalidCredentialsError => { code: 'INVALID_CREDENTIALS_ERROR' },
-                       ::FreightKit::ResponseError => { code: 'API_ERROR', message: 'API error' },
+                       ::FreightKit::ResponseError => { code: 'API_ERROR' },
                        ::FreightKit::UnserviceableAccessorialsError => { code: 'NOT_SERVICEABLE_ERROR' },
                        ::FreightKit::UnserviceableError => { code: 'NOT_SERVICEABLE_ERROR' },
-                       ::NotImplementedError => {
-                                                  code: 'NOT_IMPLEMENTED_ERROR',
-                                                  message: "Carrier doesn't support fetching rates via API"
-                                                },
+                       ::NotImplementedError => { code: 'NOT_IMPLEMENTED_ERROR' },
                        Types::CarrierInputType::CarrierNotFoundError => { code: 'CARRIER_NOT_KNOWN_ERROR' }
                      }
 
@@ -34,11 +32,7 @@ module Transponder
 
         def raise_error(error)
           code = EXCEPTIONS[error.class][:code]
-          message = if EXCEPTIONS[error.class][:message].present?
-                      EXCEPTIONS[error.class][:message]
-                    elsif error.message != error.class.to_s
-                      error.message
-                    end
+          message = error.message if error.message != error.class.to_s
 
           context.add_error(::GraphQL::ExecutionError.new(message, extensions: { code: code }))
         end
