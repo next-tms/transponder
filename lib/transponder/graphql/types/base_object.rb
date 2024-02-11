@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require 'freight_kit'
+require 'freight_kit-next'
+
 module Transponder
   module GraphQL
     module Types
