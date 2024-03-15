@@ -8,12 +8,12 @@ module Transponder
         include ::GraphQL::Types::Relay::HasNodeField
         include ::GraphQL::Types::Relay::HasNodesField
 
+        field :fetch_carrier, resolver: ::Transponder::GraphQL::Queries::FetchCarrier
+        field :fetch_carriers, resolver: ::Transponder::GraphQL::Queries::FetchCarriers
         field :fetch_document, resolver: ::Transponder::GraphQL::Queries::FetchDocument
         field :fetch_pro, resolver: ::Transponder::GraphQL::Queries::FetchPro
         field :fetch_rates, resolver: ::Transponder::GraphQL::Queries::FetchRates
         field :fetch_tracking, resolver: ::Transponder::GraphQL::Queries::FetchTracking
-
-        multiple_fields ::Transponder::GraphQL::Queries::Carrier
       end
     end
   end
