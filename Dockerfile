@@ -1,5 +1,5 @@
 FROM ruby:3.3.2-alpine3.20 AS runtime
-RUN apk -U upgrade && apk add --no-cache libpq-dev libxml2 libxslt imagemagick
+RUN apk -U upgrade && apk add --no-cache libpq-dev libxml2 libxslt imagemagick shared-mime-info
 
 FROM runtime AS build
 ARG BUNDLER_GITHUB_OAUTH_KEY
@@ -15,8 +15,7 @@ RUN apk add --no-cache --virtual .gem-installdeps build-base \
                                                   imagemagick-dev \
                                                   imagemagick-libs \
                                                   libxml2-dev \
-                                                  libxslt-dev \
-                                                  shared-mime-info && \
+                                                  libxslt-dev && \
     gem install bundler -v 2.5.11 && \
     gem install nokogiri --platform=ruby -- --use-system-libraries && \
     bundle config github.com $BUNDLER_GITHUB_OAUTH_KEY && \
