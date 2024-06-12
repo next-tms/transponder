@@ -15,7 +15,8 @@ RUN apk add --no-cache --virtual .gem-installdeps build-base \
                                                   imagemagick-dev \
                                                   imagemagick-libs \
                                                   libxml2-dev \
-                                                  libxslt-dev && \
+                                                  libxslt-dev \
+                                                  shared-mime-info && \
     gem install bundler -v 2.5.11 && \
     gem install nokogiri --platform=ruby -- --use-system-libraries && \
     bundle config github.com $BUNDLER_GITHUB_OAUTH_KEY && \
