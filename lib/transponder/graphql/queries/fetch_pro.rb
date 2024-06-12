@@ -54,7 +54,7 @@ module Transponder
           code = EXCEPTIONS[error.class][:code]
           message = error.message if error.message != error.class.to_s
 
-          context.add_error(::GraphQL::ExecutionError.new(message, extensions: { code: code }))
+          context.add_error(::GraphQL::ExecutionError.new(message, extensions: { code: }))
         end
       end
     end
