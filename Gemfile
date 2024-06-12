@@ -32,7 +32,7 @@ end
 group :cli, :development, :test do
   gem 'faker', '~> 3.2.1'
   gem 'hanami-rspec'
-  gem 'rubocop-next', '~> 1.0.4'
+  gem 'rubocop-next', '~> 1.0.7'
 end
 
 group :development do
