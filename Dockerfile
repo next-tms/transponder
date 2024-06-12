@@ -1,4 +1,4 @@
-FROM ruby:3.2.2-alpine3.18 AS runtime
+FROM ruby:3.3.2-alpine3.20 AS runtime
 RUN apk -U upgrade && apk add --no-cache libpq-dev libxml2 libxslt imagemagick
 
 FROM runtime AS build
