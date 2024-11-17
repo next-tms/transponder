@@ -9,7 +9,11 @@ module Transponder
         argument :width, LengthInputType, required: false
 
         def prepare
-          { height:, length:, width: }
+          {
+            height: height || 0,
+            length: length || 0,
+            width: width || 0
+          }
         end
       end
     end
