@@ -15,6 +15,8 @@ module Transponder
         argument :weight, WeightInputType, required: true
 
         def prepare
+          dimensions ||= { height: nil, length: nil, width: nil }
+
           options = {}.tap do |builder|
             builder[:declared_freight_class] = declared_freight_class if declared_freight_class.present?
             builder[:description] = description if description.present?
