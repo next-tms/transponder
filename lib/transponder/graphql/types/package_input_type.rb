@@ -7,7 +7,7 @@ module Transponder
     module Types
       class PackageInputType < ::GraphQL::Schema::InputObject
         argument :description, String, required: false
-        argument :dimensions, Types::DimensionInputType, required: false
+        argument :dimensions, Types::DimensionInputType, required: true
         argument :freight_class, Types::FreightClassType, required: false
         argument :hazardous, ::GraphQL::Types::Boolean, required: true
         argument :nmfc, String, required: false
@@ -15,8 +15,6 @@ module Transponder
         argument :weight, WeightInputType, required: true
 
         def prepare
-          dimensions ||= { height: 0, length: 0, width: 0 }
-
           options = {}.tap do |builder|
             builder[:declared_freight_class] = declared_freight_class if declared_freight_class.present?
             builder[:description] = description if description.present?
