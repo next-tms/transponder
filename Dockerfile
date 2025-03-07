@@ -19,10 +19,9 @@ COPY ./Gemfile /app/Gemfile
 
 WORKDIR /app
 
-RUN gem install bundler -v 2.5.11 && \
+RUN gem install bundler -v 2.5.11
 RUN bundle config github.com $BUNDLER_GITHUB_OAUTH_KEY
-RUN gem install nokogiri --platform=ruby -- --use-system-libraries && \
-    bundle install --jobs $(nproc) --retry 5
+RUN gem install nokogiri --platform=ruby -- --use-system-libraries && bundle install --jobs $(nproc) --retry 5
 RUN rm -rf /usr/local/bundle/cache && apk del .gem-installdeps
 
 FROM runtime

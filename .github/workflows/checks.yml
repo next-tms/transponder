@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.3.6
+          ruby-version: 3.3.7
       - run: sudo apt-get update && sudo apt-get install -y libmagickwand-dev
       - run: |
           gem install bundler
@@ -34,7 +34,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.3.6
+          ruby-version: 3.3.7
       - run: sudo apt-get update && sudo apt-get install -y libmagickwand-dev
       - run: |
           gem install bundler
