@@ -5,8 +5,6 @@ RUN apk add --no-cache libpq-dev libxml2 libxslt imagemagick shared-mime-info
 FROM runtime AS build
 ARG BUNDLER_GITHUB_OAUTH_KEY
 
-RUN apk add --no-cache build-base git
-
 RUN apk add --no-cache --virtual .gem-installdeps build-base \
                                                   git \
                                                   imagemagick-c++ \
