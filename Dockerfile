@@ -24,6 +24,7 @@ RUN rm -rf /usr/local/bundle/cache && apk del .gem-installdeps
 
 FROM runtime
 COPY . /app
+COPY --from=build /app/Gemfile.lock /app/Gemfile.lock
 COPY --from=build /usr/local/bundle /usr/local/bundle
 
 WORKDIR /app
