@@ -1,4 +1,4 @@
-FROM ruby:3.3.7-alpine3.21 AS runtime
+FROM ruby:3.4.7-alpine3.21 AS runtime
 RUN apk -U upgrade
 RUN apk add --no-cache libpq-dev libxml2 libxslt imagemagick shared-mime-info
 
