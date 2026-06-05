@@ -5,11 +5,7 @@ on:
       - '**'
       - '!main'
   workflow_call:
-    secrets:
-      BUNDLER_GITHUB_OAUTH_KEY:
-        required: true
 env:
-  BUNDLER_GITHUB_OAUTH_KEY: ${{ secrets.BUNDLER_GITHUB_OAUTH_KEY }}
   HANAMI_ENV: test
   RACK_ENV: test
 jobs:
@@ -23,8 +19,7 @@ jobs:
           ruby-version: 3.3.7
       - run: sudo apt-get update && sudo apt-get install -y libmagickwand-dev
       - run: |
-          gem install bundler
-          bundle config github.com "$BUNDLER_GITHUB_OAUTH_KEY"
+          gem install bundler -v 2.5.22
           bundle install --jobs 4 --retry 3
       - run: bundle exec rubocop --only Lint/Syntax
   tests:
@@ -37,7 +32,6 @@ jobs:
           ruby-version: 3.3.7
       - run: sudo apt-get update && sudo apt-get install -y libmagickwand-dev
       - run: |
-          gem install bundler
-          bundle config github.com "$BUNDLER_GITHUB_OAUTH_KEY"
+          gem install bundler -v 2.5.22
           bundle install --jobs 4 --retry 3
       - run: bundle exec rspec
