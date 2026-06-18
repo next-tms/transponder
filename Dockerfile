@@ -1,6 +1,6 @@
 FROM ruby:3.4.7-alpine3.21 AS runtime
 RUN apk -U upgrade
-RUN apk add --no-cache libpq-dev libxml2 libxslt imagemagick shared-mime-info
+RUN apk add --no-cache libpq-dev libxml2 libxslt imagemagick shared-mime-info yaml
 
 FROM runtime AS build
 
@@ -9,7 +9,8 @@ RUN apk add --no-cache --virtual .gem-installdeps build-base \
                                                   imagemagick-dev \
                                                   imagemagick-libs \
                                                   libxml2-dev \
-                                                  libxslt-dev
+                                                  libxslt-dev \
+                                                  yaml-dev
 
 COPY ./Gemfile /app/Gemfile
 
