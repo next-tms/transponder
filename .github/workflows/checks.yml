@@ -14,24 +14,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - run: sudo apt-get update && sudo apt-get install -y libmagickwand-dev
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.3.7
-      - run: sudo apt-get update && sudo apt-get install -y libmagickwand-dev
-      - run: |
-          gem install bundler -v 2.5.22
-          bundle install --jobs 4 --retry 3
+          ruby-version: .ruby-version
+          bundler-cache: true
       - run: bundle exec rubocop --only Lint/Syntax
   tests:
     name: Tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - run: sudo apt-get update && sudo apt-get install -y libmagickwand-dev
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.3.7
-      - run: sudo apt-get update && sudo apt-get install -y libmagickwand-dev
-      - run: |
-          gem install bundler -v 2.5.22
-          bundle install --jobs 4 --retry 3
+          ruby-version: .ruby-version
+          bundler-cache: true
       - run: bundle exec rspec

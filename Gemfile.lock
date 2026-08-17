@@ -242,9 +242,13 @@ GEM
       timeout
     net-smtp (0.5.1)
       net-protocol
-    nio4r (2.5.8)
+    nio4r (2.7.5)
     nkf (0.3.0)
     nokogiri (1.19.4-arm64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.19.4-x86_64-linux-gnu)
+      racc (~> 1.4)
+    nokogiri (1.19.4-x86_64-linux-musl)
       racc (~> 1.4)
     nori (2.9.1)
       bigdecimal
@@ -370,6 +374,8 @@ GEM
 PLATFORMS
   arm64-darwin-22
   arm64-darwin-25
+  x86_64-linux
+  x86_64-linux-musl
 
 DEPENDENCIES
   active_utils (~> 3.3, >= 3.3.19)
@@ -394,4 +400,4 @@ DEPENDENCIES
   rubocop-next (~> 1.0.7)
 
 BUNDLED WITH
-   2.3.26
+   2.6.9
