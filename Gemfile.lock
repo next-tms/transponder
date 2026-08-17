@@ -198,7 +198,7 @@ GEM
       rack (>= 2.0, < 4)
     i18n (1.15.2)
       concurrent-ruby (~> 1.0)
-    json (2.21.1)
+    json (2.21.2)
     language_server-protocol (3.17.0.6)
     listen (3.7.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
