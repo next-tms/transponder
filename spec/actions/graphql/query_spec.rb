@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable RSpec/FilePath
 RSpec.describe(Transponder::Actions::GraphQL::Query) do
   let(:operation_name) { nil }
   let(:query) { Faker::Alphanumeric }
@@ -20,4 +19,3 @@ RSpec.describe(Transponder::Actions::GraphQL::Query) do
     it { expect(response.status).to(eq(400)) }
   end
 end
-# rubocop:enable RSpec/FilePath

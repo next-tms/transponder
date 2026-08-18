@@ -2,3 +2,5 @@ inherit_from: .rubocop_todo.yml
 
 inherit_gem:
   rubocop-next: rubocop.yml
+RSpec/SpecFilePathFormat:
+  Enabled: false

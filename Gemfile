@@ -2,13 +2,13 @@
 
 source 'https://rubygems.org'
 
-gem 'hanami', '~> 2.1.0'
-gem 'hanami-router', '~> 2.1.0'
-gem 'hanami-controller', '~> 2.1.0'
-gem 'hanami-validations', '~> 2.1.0'
+gem 'hanami', '~> 2.3.2'
+gem 'hanami-router', '~> 2.3.1'
+gem 'hanami-controller', '~> 2.3.2'
+gem 'hanami-validations', '~> 2.3.0'
 
 gem 'dry-types', '~> 1.0', '>= 1.6.1'
-gem 'puma'
+gem 'puma', '~> 8.0'
 gem 'rake'
 
 gem 'graphql', '~> 2.0'
@@ -26,12 +26,12 @@ group :development, :test do
 end
 
 group :cli, :development do
-  gem 'hanami-reloader'
+  gem 'hanami-reloader', '~> 2.3.0'
 end
 
 group :cli, :development, :test do
   gem 'faker', '~> 3.2.1'
-  gem 'hanami-rspec'
+  gem 'hanami-rspec', '~> 2.3.1'
   gem 'rubocop-next', '~> 1.0.7'
 end
 
