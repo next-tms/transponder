@@ -26,12 +26,12 @@ group :development, :test do
 end
 
 group :cli, :development do
-  gem 'hanami-reloader', '~> 2.3.0'
+  gem 'hanami-reloader', '~> 3.0.0'
 end
 
 group :cli, :development, :test do
   gem 'faker', '~> 3.8.0'
-  gem 'hanami-rspec', '~> 2.3.1'
+  gem 'hanami-rspec', '~> 3.0.0'
   gem 'rubocop-next', '~> 1.0.7'
 end
 
