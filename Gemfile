@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 
 gem 'hanami', '~> 2.3.2'
-gem 'hanami-router', '~> 2.3.1'
+gem 'hanami-router', '~> 3.0.0'
 gem 'hanami-controller', '~> 2.3.2'
 gem 'hanami-validations', '~> 2.3.0'
 
