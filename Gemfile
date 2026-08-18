@@ -17,7 +17,7 @@ gem 'graphql', '~> 2.0'
 gem 'active_utils', '~> 3.3', '>= 3.3.19'
 gem 'freight_kit', '~> 0.1.18'
 gem 'mimemagic', '~> 0.4.3'
-gem 'money', '~> 6.16.0'
+gem 'money', '~> 7.1.1'
 
 gem 'honeybadger'
 
