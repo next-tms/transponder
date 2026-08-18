@@ -30,7 +30,7 @@ group :cli, :development do
 end
 
 group :cli, :development, :test do
-  gem 'faker', '~> 3.2.1'
+  gem 'faker', '~> 3.8.0'
   gem 'hanami-rspec', '~> 2.3.1'
   gem 'rubocop-next', '~> 1.0.7'
 end
