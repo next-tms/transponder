@@ -1,6 +1,5 @@
-FROM ruby:3.4.9-alpine3.22 AS runtime
-RUN apk -U upgrade
-RUN apk add --no-cache libpq-dev libxml2 libxslt imagemagick shared-mime-info yaml
+FROM ruby:4.0.6-alpine3.24 AS runtime
+RUN apk --no-cache upgrade && apk add --no-cache libpq-dev libxml2 libxslt imagemagick shared-mime-info yaml
 
 FROM runtime AS build
 

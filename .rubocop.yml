@@ -1,5 +1,9 @@
 inherit_from: .rubocop_todo.yml
 
+# @note Remove once `rubocop-next` allows a RuboCop that knows Ruby 4.0.
+AllCops:
+  TargetRubyVersion: 3.4
+
 inherit_gem:
   rubocop-next: rubocop.yml
 RSpec/SpecFilePathFormat:
