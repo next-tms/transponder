@@ -1,4 +1,4 @@
-FROM golang:1.26.4-alpine3.23 AS caddy
+FROM golang:1.27.2-alpine3.23 AS caddy
 ARG CADDY_VERSION=2.11.7
 ARG GOPROXY
 
