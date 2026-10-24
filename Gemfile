@@ -19,8 +19,6 @@ gem 'freight_kit', '~> 0.1.18'
 gem 'mimemagic', '~> 0.4.3'
 gem 'money', '~> 7.1.1'
 
-gem 'honeybadger'
-
 group :development, :test do
   gem 'dotenv'
 end
