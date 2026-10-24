@@ -130,7 +130,7 @@ GEM
       tzinfo-data (~> 1.2023, >= 1.2023.3)
       watir (>= 7.0, < 7.4)
       zeitwerk (>= 2.6.0, < 2.8.4)
-    graphql (2.6.9)
+    graphql (2.6.12)
       base64
       fiber-storage
       logger
@@ -429,7 +429,7 @@ DEPENDENCIES
   dry-types (~> 1.0, >= 1.6.1)
   faker (~> 3.8.0)
   freight_kit (~> 0.1.18)
-  graphql (~> 2.0)
+  graphql (~> 2.6)
   guard-puma (~> 0.8)
   hanami (~> 2.3.2)
   hanami-controller (~> 2.3.2)

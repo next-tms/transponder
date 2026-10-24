@@ -11,7 +11,7 @@ gem 'dry-types', '~> 1.0', '>= 1.6.1'
 gem 'puma', '~> 8.0'
 gem 'rake'
 
-gem 'graphql', '~> 2.0'
+gem 'graphql', '~> 2.6'
 
 # @note GraphQL types depend on these:
 gem 'active_utils', '~> 3.6'
