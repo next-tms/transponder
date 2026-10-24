@@ -1,15 +1,15 @@
 FROM golang:1.26.4-alpine3.23 AS caddy
-ARG CADDY_VERSION=2.11.2
+ARG CADDY_VERSION=2.11.7
 ARG GOPROXY
 
 RUN apk -U upgrade
-RUN go install github.com/caddyserver/xcaddy/cmd/xcaddy@v0.4.5
+RUN go install github.com/caddyserver/xcaddy/cmd/xcaddy@v0.4.7
 
 WORKDIR /src
 ENV XCADDY_GO_BUILD_FLAGS='-trimpath -ldflags "-s -w -extldflags -static" -tags "osusergo,netgo"'
 RUN /go/bin/xcaddy build v$CADDY_VERSION --with github.com/ueffel/caddy-brotli
 
-FROM ruby:4.0.6-alpine3.24 AS runtime
+FROM ruby:4.0.9-alpine3.24 AS runtime
 RUN apk --no-cache upgrade && apk add --no-cache curl libpq-dev libxml2 libxslt imagemagick shared-mime-info yaml
 
 FROM runtime AS build
