@@ -15,9 +15,10 @@ module Transponder
           carrier = ::FreightKit::Carriers.all.find { |carrier| carrier.scac&.downcase == scac.to_s.downcase }
           raise CarrierNotFoundError, "Carrier with SCAC code #{scac.upcase} not found" unless carrier
 
+          credentials = carrier_credentials.map { |credential| credential.to_credential(scac: carrier.scac) }
           kwargs = { customer_location:, tariff: }.compact
 
-          carrier.new(carrier_credentials, **kwargs)
+          carrier.new(credentials, **kwargs)
         end
       end
     end

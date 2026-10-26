@@ -1,30 +1,3 @@
-GIT
-  remote: https://github.com/next-tms/freight_kit.git
-  revision: c4bd75a8d1b5d17029d4861b9755c032c82fda9f
-  branch: main
-  specs:
-    freight_kit (0.1.20)
-      StreetAddress (~> 2.0)
-      active_utils (>= 3.3.1, < 3.7.0)
-      activemodel (>= 7.1, < 8.1.5)
-      activesupport (>= 7.1, < 8.1.5)
-      benchmark (~> 0.5.0)
-      brotli (>= 0.9.2, < 1)
-      business_time (~> 0.13.0)
-      countries (~> 8.1)
-      httpx (>= 1.9.0, < 2)
-      json (< 3)
-      measured (>= 2.0, < 3.2.2)
-      mimemagic (~> 0.4.3)
-      multi_xml (>= 0.9.1, < 1)
-      nokogiri (>= 1.6, < 1.20)
-      place_kit (~> 0.0.6)
-      savon (>= 2.17, < 2.18)
-      tzinfo-data (~> 1.2023, >= 1.2023.3)
-      watir (>= 7.0, < 7.4)
-      zeitwerk (>= 2.6.0, < 2.8.4)
-      zstd-ruby (>= 2.0.10, < 3)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -145,6 +118,27 @@ GEM
     fiber-storage (1.0.1)
     formatador (1.2.3)
       reline
+    freight_kit (0.1.21)
+      StreetAddress (~> 2.0)
+      active_utils (>= 3.3.1, < 3.7.0)
+      activemodel (>= 7.1, < 8.1.5)
+      activesupport (>= 7.1, < 8.1.5)
+      benchmark (~> 0.5.0)
+      brotli (>= 0.9.2, < 1)
+      business_time (~> 0.13.0)
+      countries (~> 8.1)
+      httpx (>= 1.9.0, < 2)
+      json (< 3)
+      measured (>= 2.0, < 3.2.2)
+      mimemagic (~> 0.4.3)
+      multi_xml (>= 0.9.1, < 1)
+      nokogiri (>= 1.6, < 1.20)
+      place_kit (~> 0.0.6)
+      savon (>= 2.17, < 2.18)
+      tzinfo-data (~> 1.2023, >= 1.2023.3)
+      watir (>= 7.0, < 7.4)
+      zeitwerk (>= 2.6.0, < 2.8.4)
+      zstd-ruby (>= 2.0.10, < 3)
     graphql (2.6.12)
       base64
       fiber-storage
@@ -435,7 +429,7 @@ DEPENDENCIES
   dotenv
   dry-types (~> 1.0, >= 1.6.1)
   faker (~> 3.8.0)
-  freight_kit!
+  freight_kit (~> 0.1.21)
   graphql (~> 2.6)
   guard-puma (~> 0.8)
   hanami (~> 2.3.2)

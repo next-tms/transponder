@@ -12,6 +12,8 @@ module Transponder
           { content_type: document_content_type, data_base64: document_data_base64 }
         end
 
+        def request = HostCredentials.redact(object.request&.to_s)
+
         private
 
         def document_content_type

@@ -21,6 +21,9 @@ module Transponder
           end
         end
 
+        def request = HostCredentials.redact(object.request)
+        def response = HostCredentials.redact(object.response)
+
         private
 
         def label_content_type(label)

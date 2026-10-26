@@ -17,6 +17,9 @@ module Transponder
         field :response, ::GraphQL::Types::JSON, null: true
         field :scheduled_delivery, Types::DateTimeType, method: :scheduled_delivery_date
         field :tracking_number, String
+
+        def request = HostCredentials.redact(object.request)
+        def response = HostCredentials.redact(object.response)
       end
     end
   end
