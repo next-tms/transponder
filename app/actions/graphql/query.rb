@@ -7,7 +7,7 @@ module Transponder
         params do
           required(:query).filled.value(:string)
 
-          optional(:operationName).filled.value(:string)
+          optional(:operationName).maybe(:string)
           optional(:variables)
         end
 
