@@ -1,17 +1,15 @@
-# frozen_string_literal: true
-
 module Transponder
   module GraphQL
     module Queries
       class FetchPro < ::GraphQL::Schema::Resolver
         EXCEPTIONS = {
-                       ::FreightKit::ExpiredCredentialsError => { code: 'INVALID_CREDENTIALS_ERROR' },
-                       ::FreightKit::InvalidCredentialsError => { code: 'INVALID_CREDENTIALS_ERROR' },
-                       ::FreightKit::ResponseError => { code: 'API_ERROR' },
-                       ::FreightKit::ShipmentNotFoundError => { code: 'NOT_FOUND' },
-                       ::NotImplementedError => { code: 'NOT_IMPLEMENTED_ERROR' },
-                       Types::CarrierInputType::CarrierNotFoundError => { code: 'CARRIER_NOT_KNOWN_ERROR' }
-                     }
+          ::FreightKit::ExpiredCredentialsError => { code: 'INVALID_CREDENTIALS_ERROR' },
+          ::FreightKit::InvalidCredentialsError => { code: 'INVALID_CREDENTIALS_ERROR' },
+          ::FreightKit::ResponseError => { code: 'API_ERROR' },
+          ::FreightKit::ShipmentNotFoundError => { code: 'NOT_FOUND' },
+          ::NotImplementedError => { code: 'NOT_IMPLEMENTED_ERROR' },
+          Types::CarrierInputType::CarrierNotFoundError => { code: 'CARRIER_NOT_KNOWN_ERROR' }
+        }.freeze
 
         type String, null: true
 
@@ -28,7 +26,7 @@ module Transponder
               picked_up_on,
               picked_up_on - 1.day,
               picked_up_on + 1.day,
-              picked_up_on + 2.days,
+              picked_up_on + 2.days
             ].each do |date|
               pro = carrier.find_tracking_number_from_pickup_number(pickup_number, date)
               break if pro.present?

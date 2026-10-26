@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Transponder
   module GraphQL
     module Types
@@ -7,7 +5,6 @@ module Transponder
         argument :iso8601, ::GraphQL::Types::ISO8601DateTime, required: true
 
         def prepare
-          # rubocop:disable Style/DateTime
           timezone_offset = iso8601.to_datetime.offset.numerator
           tz = ActiveSupport::TimeZone[timezone_offset]
 

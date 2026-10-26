@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Transponder
   module GraphQL
     module Types
@@ -24,9 +22,9 @@ module Transponder
           object.prices.map do |price|
             {
               cost: {
-                      currency: object.currency,
-                      fractional: price.cents
-                    },
+                currency: object.currency,
+                fractional: price.cents
+              },
               description: price.description
             }
           end

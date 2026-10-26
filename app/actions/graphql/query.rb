@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Transponder
   module Actions
     module GraphQL
@@ -18,7 +16,7 @@ module Transponder
 
           unless request.params.valid?
             errors = request.params.errors.map do |key, values|
-              "#{key} #{values.join(", ")}"
+              "#{key} #{values.join(', ')}"
             end
             data = { errors: }
 
@@ -36,7 +34,7 @@ module Transponder
                  .execute(
                    query,
                    operation_name:,
-                   variables:,
+                   variables:
                  )
 
           response.body = data.to_json
@@ -44,15 +42,15 @@ module Transponder
 
         private
 
-        def handle_standard_error(request, response, exception)
+        def handle_standard_error(_request, response, exception)
           response.format = :json
           response.status = 200
 
           data = {
-                   errors: [
-                             { message: 'Sorry, something went wrong handling your request' },
-                           ]
-                 }
+            errors: [
+              { message: 'Sorry, something went wrong handling your request' }
+            ]
+          }
 
           response.body = serialize(data)
 

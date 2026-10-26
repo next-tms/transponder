@@ -1,11 +1,9 @@
-# frozen_string_literal: true
-
 module Transponder
   module GraphQL
     # Host-owned (Next TMS) carrier credentials, read from `FREIGHT_KIT_CARRIER_<SCAC>_PROVIDER_*`.
     module HostCredentials
       ENV_PATTERN = /\AFREIGHT_KIT_CARRIER_[A-Z0-9]+_PROVIDER_[A-Z_]+\z/
-      FILTERED = '[FILTERED]'
+      FILTERED = '[FILTERED]'.freeze
 
       class << self
         # @param [String] scac

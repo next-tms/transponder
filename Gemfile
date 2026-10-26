@@ -1,10 +1,8 @@
-# frozen_string_literal: true
-
 source 'https://rubygems.org'
 
 gem 'hanami', '~> 2.3.2'
-gem 'hanami-router', '~> 3.0.0'
 gem 'hanami-controller', '~> 2.3.2'
+gem 'hanami-router', '~> 3.0.0'
 gem 'hanami-validations', '~> 2.3.0'
 
 gem 'dry-types', '~> 1.0', '>= 1.6.1'

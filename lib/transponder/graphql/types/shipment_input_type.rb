@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Transponder
   module GraphQL
     module Types
@@ -16,16 +14,16 @@ module Transponder
 
         def prepare
           args = {
-                   accessorials:,
-                   declared_value_cents: declared_value.fractional,
-                   destination:,
-                   order_number:,
-                   origin:,
-                   packages:,
-                   pickup_at:,
-                   po_number:,
-                   pro: pro_number
-                 }.compact
+            accessorials:,
+            declared_value_cents: declared_value.fractional,
+            destination:,
+            order_number:,
+            origin:,
+            packages:,
+            pickup_at:,
+            po_number:,
+            pro: pro_number
+          }.compact
 
           FreightKit::Shipment.new(**args)
         end

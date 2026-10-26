@@ -1,18 +1,16 @@
-# frozen_string_literal: true
-
 module Transponder
   module GraphQL
     module Queries
       class FetchRates < ::GraphQL::Schema::Resolver
         EXCEPTIONS = {
-                       ::FreightKit::ExpiredCredentialsError => { code: 'INVALID_CREDENTIALS_ERROR' },
-                       ::FreightKit::InvalidCredentialsError => { code: 'INVALID_CREDENTIALS_ERROR' },
-                       ::FreightKit::ResponseError => { code: 'API_ERROR' },
-                       ::FreightKit::UnserviceableAccessorialsError => { code: 'NOT_SERVICEABLE_ERROR' },
-                       ::FreightKit::UnserviceableError => { code: 'NOT_SERVICEABLE_ERROR' },
-                       ::NotImplementedError => { code: 'NOT_IMPLEMENTED_ERROR' },
-                       Types::CarrierInputType::CarrierNotFoundError => { code: 'CARRIER_NOT_KNOWN_ERROR' }
-                     }
+          ::FreightKit::ExpiredCredentialsError => { code: 'INVALID_CREDENTIALS_ERROR' },
+          ::FreightKit::InvalidCredentialsError => { code: 'INVALID_CREDENTIALS_ERROR' },
+          ::FreightKit::ResponseError => { code: 'API_ERROR' },
+          ::FreightKit::UnserviceableAccessorialsError => { code: 'NOT_SERVICEABLE_ERROR' },
+          ::FreightKit::UnserviceableError => { code: 'NOT_SERVICEABLE_ERROR' },
+          ::NotImplementedError => { code: 'NOT_IMPLEMENTED_ERROR' },
+          Types::CarrierInputType::CarrierNotFoundError => { code: 'CARRIER_NOT_KNOWN_ERROR' }
+        }.freeze
 
         type ::Transponder::GraphQL::Types::RateResponseType, null: true
 

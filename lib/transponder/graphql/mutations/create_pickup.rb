@@ -1,18 +1,16 @@
-# frozen_string_literal: true
-
 module Transponder
   module GraphQL
     module Mutations
       class CreatePickup < ::GraphQL::Schema::Resolver
         EXCEPTIONS = {
-                       ::FreightKit::ExpiredCredentialsError => { code: 'INVALID_CREDENTIALS_ERROR' },
-                       ::FreightKit::InvalidCredentialsError => { code: 'INVALID_CREDENTIALS_ERROR' },
-                       ::FreightKit::ResponseError => { code: 'API_ERROR' },
-                       ::FreightKit::UnserviceableAccessorialsError => { code: 'NOT_SERVICEABLE_ERROR' },
-                       ::FreightKit::UnserviceableError => { code: 'NOT_SERVICEABLE_ERROR' },
-                       ::NotImplementedError => { code: 'NOT_IMPLEMENTED_ERROR' },
-                       Types::CarrierInputType::CarrierNotFoundError => { code: 'CARRIER_NOT_KNOWN_ERROR' }
-                     }
+          ::FreightKit::ExpiredCredentialsError => { code: 'INVALID_CREDENTIALS_ERROR' },
+          ::FreightKit::InvalidCredentialsError => { code: 'INVALID_CREDENTIALS_ERROR' },
+          ::FreightKit::ResponseError => { code: 'API_ERROR' },
+          ::FreightKit::UnserviceableAccessorialsError => { code: 'NOT_SERVICEABLE_ERROR' },
+          ::FreightKit::UnserviceableError => { code: 'NOT_SERVICEABLE_ERROR' },
+          ::NotImplementedError => { code: 'NOT_IMPLEMENTED_ERROR' },
+          Types::CarrierInputType::CarrierNotFoundError => { code: 'CARRIER_NOT_KNOWN_ERROR' }
+        }.freeze
 
         type ::Transponder::GraphQL::Types::PickupResponseType, null: false
 
@@ -26,16 +24,16 @@ module Transponder
         argument :service, String, required: false
         argument :shipment, ::Transponder::GraphQL::Types::ShipmentInputType, required: true
 
-        def resolve(
+        def resolve( # rubocop:disable Metrics/ParameterLists
           carrier:,
-          delivery_from: nil,
-          delivery_to: nil,
           dispatcher:,
           pickup_from:,
           pickup_to:,
           scac:,
-          service: nil,
-          shipment:
+          shipment:,
+          delivery_from: nil,
+          delivery_to: nil,
+          service: nil
         )
           result = carrier
                    .create_pickup(
@@ -46,7 +44,7 @@ module Transponder
                      pickup_to:,
                      scac:,
                      service:,
-                     shipment:,
+                     shipment:
                    )
           return result if result.error.blank?
 

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Transponder
   class Settings < Hanami::Settings
     # Define your app settings here, for example:

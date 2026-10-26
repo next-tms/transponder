@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Transponder
   module GraphQL
     module Types
@@ -24,7 +22,7 @@ module Transponder
             return FreightKit::Credential.new(
               type: :selenoid,
               base_url: URI.parse(ENV.fetch('SELENOID_BASE_URL')),
-              browser: :chrome,
+              browser: :chrome
             )
           end
 

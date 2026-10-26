@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Transponder
   class Routes < Hanami::Routes
     get '/up', to: ->(*) { [200, { 'content-type' => 'text/plain' }, ['ok']] }

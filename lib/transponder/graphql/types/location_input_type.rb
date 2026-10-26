@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'freight_kit'
 
 module Transponder
@@ -20,7 +18,7 @@ module Transponder
             contact:,
             country:,
             postal_code:,
-            province: region_abbreviation,
+            province: region_abbreviation
           )
         end
       end

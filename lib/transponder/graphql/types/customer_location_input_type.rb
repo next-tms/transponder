@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Transponder
   module GraphQL
     module Types
@@ -18,7 +16,7 @@ module Transponder
             contact:,
             country:,
             postal_code:,
-            province: region_abbreviation,
+            province: region_abbreviation
           )
         end
       end

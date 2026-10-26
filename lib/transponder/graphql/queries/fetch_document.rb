@@ -1,17 +1,15 @@
-# frozen_string_literal: true
-
 module Transponder
   module GraphQL
     module Queries
       class FetchDocument < ::GraphQL::Schema::Resolver
         EXCEPTIONS = {
-                       ::FreightKit::DocumentNotFoundError => { code: 'NOT_FOUND' },
-                       ::FreightKit::ExpiredCredentialsError => { code: 'INVALID_CREDENTIALS_ERROR' },
-                       ::FreightKit::InvalidCredentialsError => { code: 'INVALID_CREDENTIALS_ERROR' },
-                       ::FreightKit::ResponseError => { code: 'API_ERROR' },
-                       ::NotImplementedError => { code: 'NOT_IMPLEMENTED_ERROR' },
-                       Types::CarrierInputType::CarrierNotFoundError => { code: 'CARRIER_NOT_KNOWN_ERROR' }
-                     }
+          ::FreightKit::DocumentNotFoundError => { code: 'NOT_FOUND' },
+          ::FreightKit::ExpiredCredentialsError => { code: 'INVALID_CREDENTIALS_ERROR' },
+          ::FreightKit::InvalidCredentialsError => { code: 'INVALID_CREDENTIALS_ERROR' },
+          ::FreightKit::ResponseError => { code: 'API_ERROR' },
+          ::NotImplementedError => { code: 'NOT_IMPLEMENTED_ERROR' },
+          Types::CarrierInputType::CarrierNotFoundError => { code: 'CARRIER_NOT_KNOWN_ERROR' }
+        }.freeze
 
         type ::Transponder::GraphQL::Types::DocumentResponseType, null: true
 

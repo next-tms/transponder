@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'rack/test'
 
 RSpec.shared_context('Hanami app') do

@@ -1,11 +1,9 @@
-# frozen_string_literal: true
-
 max_threads_count = ENV.fetch('HANAMI_MAX_THREADS', 5)
 min_threads_count = ENV.fetch('HANAMI_MIN_THREADS') { max_threads_count }
 threads min_threads_count, max_threads_count
 
 if ENV['PUMA_SOCKET']
-  bind "unix://#{ENV.fetch("PUMA_SOCKET")}"
+  bind "unix://#{ENV.fetch('PUMA_SOCKET')}"
 else
   port ENV.fetch('HANAMI_PORT', 2300)
 end

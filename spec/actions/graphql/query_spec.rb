@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 RSpec.describe(Transponder::Actions::GraphQL::Query) do
   let(:operation_name) { nil }
   let(:query) { Faker::Alphanumeric }

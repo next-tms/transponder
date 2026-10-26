@@ -1,16 +1,14 @@
-# frozen_string_literal: true
-
 module Transponder
   module GraphQL
     module Queries
       class FetchTracking < ::GraphQL::Schema::Resolver
         EXCEPTIONS = {
-                       ::FreightKit::InvalidCredentialsError => { code: 'INVALID_CREDENTIALS_ERROR' },
-                       ::FreightKit::ResponseError => { code: 'API_ERROR' },
-                       ::FreightKit::ShipmentNotFoundError => { code: 'NOT_FOUND' },
-                       ::NotImplementedError => { code: 'NOT_IMPLEMENTED_ERROR' },
-                       Types::CarrierInputType::CarrierNotFoundError => { code: 'CARRIER_NOT_KNOWN_ERROR' }
-                     }
+          ::FreightKit::InvalidCredentialsError => { code: 'INVALID_CREDENTIALS_ERROR' },
+          ::FreightKit::ResponseError => { code: 'API_ERROR' },
+          ::FreightKit::ShipmentNotFoundError => { code: 'NOT_FOUND' },
+          ::NotImplementedError => { code: 'NOT_IMPLEMENTED_ERROR' },
+          Types::CarrierInputType::CarrierNotFoundError => { code: 'CARRIER_NOT_KNOWN_ERROR' }
+        }.freeze
 
         type ::Transponder::GraphQL::Types::TrackingResponseType, null: true
 

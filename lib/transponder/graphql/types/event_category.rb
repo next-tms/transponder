@@ -1,29 +1,27 @@
-# frozen_string_literal: true
-
 module Transponder
   module GraphQL
     module Types
       class EventCategory < BaseEnum
         EVENTS = %i[
-                   arrived_at_terminal
-                   delayed_due_to_weather
-                   delivered
-                   delivery_appointment_scheduled
-                   departed
-                   found
-                   located
-                   lost
-                   out_for_delivery
-                   pending_delivery_appointment
-                   picked_up
-                   pickup_driver_assigned
-                   pickup_information_received_by_carrier
-                   pickup_information_sent_to_carrier
-                   pickup_scheduled
-                   sailed
-                   trailer_closed
-                   trailer_unloaded
-                 ]
+          arrived_at_terminal
+          delayed_due_to_weather
+          delivered
+          delivery_appointment_scheduled
+          departed
+          found
+          located
+          lost
+          out_for_delivery
+          pending_delivery_appointment
+          picked_up
+          pickup_driver_assigned
+          pickup_information_received_by_carrier
+          pickup_information_sent_to_carrier
+          pickup_scheduled
+          sailed
+          trailer_closed
+          trailer_unloaded
+        ].freeze
 
         EVENTS.map { |event| value event.to_s.upcase, value: event }
       end
