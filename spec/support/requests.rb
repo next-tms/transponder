@@ -1,8 +1,6 @@
 require 'rack/test'
 
-RSpec.shared_context('Hanami app') do
-  let(:app) { Hanami.app }
-end
+RSpec.shared_context('Hanami app') { let(:app) { Hanami.app } }
 
 RSpec.configure do |config|
   config.include(Rack::Test::Methods, type: :request)

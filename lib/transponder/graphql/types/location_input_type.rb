@@ -12,14 +12,7 @@ module Transponder
         argument :region_abbreviation, String, required: false
 
         def prepare
-          FreightKit::Location.new(
-            address1:,
-            city:,
-            contact:,
-            country:,
-            postal_code:,
-            province: region_abbreviation
-          )
+          FreightKit::Location.new(address1:, city:, contact:, country:, postal_code:, province: region_abbreviation)
         end
       end
     end

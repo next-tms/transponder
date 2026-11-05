@@ -19,11 +19,7 @@ module Transponder
         # @return [FreightKit::Credential]
         def to_credential(scac:)
           if type == :selenoid
-            return FreightKit::Credential.new(
-              type: :selenoid,
-              base_url: URI.parse(ENV.fetch('SELENOID_BASE_URL')),
-              browser: :chrome
-            )
+            return FreightKit::Credential.new(type: :selenoid, base_url: URI.parse(ENV.fetch('SELENOID_BASE_URL')), browser: :chrome)
           end
 
           args = { account:, api_key:, base_url:, browser:, password:, proxy_url:, type:, username: }.compact

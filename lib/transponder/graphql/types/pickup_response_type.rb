@@ -11,12 +11,7 @@ module Transponder
         def labels
           return [] if object.labels.blank?
 
-          object.labels.map do |label|
-            {
-              content_type: label_content_type(label),
-              data_base64: label_data_base64(label)
-            }
-          end
+          object.labels.map { |label| { content_type: label_content_type(label), data_base64: label_data_base64(label) } }
         end
 
         def request = HostCredentials.redact(object.request)

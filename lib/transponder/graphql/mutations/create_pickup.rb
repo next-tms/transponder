@@ -35,17 +35,7 @@ module Transponder
           delivery_to: nil,
           service: nil
         )
-          result = carrier
-                   .create_pickup(
-                     delivery_from:,
-                     delivery_to:,
-                     dispatcher:,
-                     pickup_from:,
-                     pickup_to:,
-                     scac:,
-                     service:,
-                     shipment:
-                   )
+          result = carrier.create_pickup(delivery_from:, delivery_to:, dispatcher:, pickup_from:, pickup_to:, scac:, service:, shipment:)
           return result if result.error.blank?
 
           raise result.error

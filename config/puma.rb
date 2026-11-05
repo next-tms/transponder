@@ -11,8 +11,6 @@ end
 environment ENV.fetch('HANAMI_ENV', 'development')
 workers     ENV.fetch('HANAMI_WEB_CONCURRENCY', 2)
 
-before_worker_boot do
-  Hanami.shutdown
-end
+before_worker_boot { Hanami.shutdown }
 
 preload_app!

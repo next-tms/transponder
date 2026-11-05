@@ -15,9 +15,7 @@ module Transponder
           response.format = :json
 
           unless request.params.valid?
-            errors = request.params.errors.map do |key, values|
-              "#{key} #{values.join(', ')}"
-            end
+            errors = request.params.errors.map { |key, values| "#{key} #{values.join(', ')}" }
             data = { errors: }
 
             halt(400, serialize(data))
@@ -30,12 +28,7 @@ module Transponder
           Hanami.logger.debug(query)
           Hanami.logger.debug(variables.to_json)
 
-          data = Transponder::GraphQL::TransponderSchema
-                 .execute(
-                   query,
-                   operation_name:,
-                   variables:
-                 )
+          data = Transponder::GraphQL::TransponderSchema.execute(query, operation_name:, variables:)
 
           response.body = data.to_json
         end
@@ -46,11 +39,7 @@ module Transponder
           response.format = :json
           response.status = 200
 
-          data = {
-            errors: [
-              { message: 'Sorry, something went wrong handling your request' }
-            ]
-          }
+          data = { errors: [{ message: 'Sorry, something went wrong handling your request' }] }
 
           response.body = serialize(data)
 

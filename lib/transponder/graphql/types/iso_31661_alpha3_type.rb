@@ -13,11 +13,7 @@ module Transponder
                     FreightKit::Countries.all.map { |country| { alpha3: country.iso31661_alpha3, name: country.name } }
 
         countries.map { |country| country[:alpha3] }.uniq.sort.map do |alpha3|
-          description = countries
-                        .select { |country| country[:alpha3] == alpha3 }
-                        .map { |country| country[:name] }
-                        .uniq
-                        .join(', ')
+          description = countries.select { |country| country[:alpha3] == alpha3 }.map { |country| country[:name] }.uniq.join(', ')
 
           value alpha3, description:
         end

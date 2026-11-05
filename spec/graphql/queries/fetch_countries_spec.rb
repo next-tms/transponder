@@ -30,7 +30,7 @@ RSpec.describe(Transponder::GraphQL::Queries::FetchCountries) do
       'united states' => ['US'],
       'United States' => ['US'],
       'us' => ['US'],
-      'USA' => ['US'],
+      'USA' => ['US']
     }.each do |name, expected|
       context "when name is #{name.inspect}" do
         let(:variables) { { name: } }

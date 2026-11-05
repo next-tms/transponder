@@ -19,15 +19,7 @@ module Transponder
         end
 
         def costs
-          object.prices.map do |price|
-            {
-              cost: {
-                currency: object.currency,
-                fractional: price.cents
-              },
-              description: price.description
-            }
-          end
+          object.prices.map { |price| { cost: { currency: object.currency, fractional: price.cents }, description: price.description } }
         end
 
         def total_cost
