@@ -139,7 +139,7 @@ GEM
       watir (>= 7.0, < 7.4)
       zeitwerk (>= 2.6.0, < 2.8.4)
       zstd-ruby (>= 2.0.10, < 3)
-    graphql (2.6.14)
+    graphql (2.6.15)
       base64
       fiber-storage
       logger
