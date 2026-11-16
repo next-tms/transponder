@@ -13,7 +13,7 @@ gem 'graphql', '~> 2.6'
 
 # @note GraphQL types depend on these:
 gem 'active_utils', '~> 3.6'
-gem 'freight_kit', '~> 0.1.21'
+gem 'freight_kit', '~> 0.1.23'
 gem 'mimemagic', '~> 0.4.3'
 gem 'money', '~> 7.1.1'
 
