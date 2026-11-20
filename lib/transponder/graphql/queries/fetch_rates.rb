@@ -1,10 +1,19 @@
+require 'freight_kit'
+require 'timeout'
+
 module Transponder
   module GraphQL
     module Queries
       class FetchRates < ::GraphQL::Schema::Resolver
         include CarrierErrors
 
+        class DeadlineExceededError < StandardError; end
+
+        # Caddy closes a request at 60 s, so one slow carrier must not hold the Puma thread for that long.
+        DEADLINE = 30
+
         EXCEPTIONS = {
+          DeadlineExceededError => { code: 'TIMEOUT_ERROR' },
           ::FreightKit::ExpiredCredentialsError => { code: 'INVALID_CREDENTIALS_ERROR' },
           ::FreightKit::HTTPError => { code: 'API_ERROR' },
           ::FreightKit::InvalidCredentialsError => { code: 'INVALID_CREDENTIALS_ERROR' },
@@ -22,7 +31,8 @@ module Transponder
         argument :shipment, Types::ShipmentInputType, required: true
 
         def resolve(carrier:, shipment:)
-          result = carrier.find_rates(shipment:)
+          message = "Carrier did not return rates within #{DEADLINE} seconds"
+          result = Timeout.timeout(DEADLINE, DeadlineExceededError, message) { carrier.find_rates(shipment:) }
           return result if result.error.blank?
 
           raise result.error

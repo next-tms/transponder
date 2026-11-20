@@ -25,8 +25,8 @@ module Transponder
           query = request.params[:query]
           variables = request.params[:variables]
 
-          Hanami.logger.debug(query)
-          Hanami.logger.debug(variables.to_json)
+          Hanami.logger.debug(LogFilter.call(query))
+          Hanami.logger.debug(LogFilter.call(variables).to_json)
 
           data = Transponder::GraphQL::TransponderSchema.execute(query, operation_name:, variables:)
 

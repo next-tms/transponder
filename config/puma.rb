@@ -1,4 +1,6 @@
-max_threads_count = ENV.fetch('HANAMI_MAX_THREADS', 5)
+# @note Carrier calls wait on HTTP for up to `FetchRates::DEADLINE`, so allow enough threads that slow rate
+#   calls leave room for cheap queries such as `matchingLanes` and `serve`.
+max_threads_count = ENV.fetch('HANAMI_MAX_THREADS', 16)
 min_threads_count = ENV.fetch('HANAMI_MIN_THREADS') { max_threads_count }
 threads min_threads_count, max_threads_count
 
