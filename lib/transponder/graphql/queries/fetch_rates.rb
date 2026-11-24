@@ -1,3 +1,4 @@
+require 'active_support/core_ext/integer/time'
 require 'freight_kit'
 require 'timeout'
 
@@ -9,8 +10,9 @@ module Transponder
 
         class DeadlineExceededError < StandardError; end
 
-        # Caddy closes a request at 60 s, so one slow carrier must not hold the Puma thread for that long.
-        DEADLINE = 30
+        # Above FreightKit's 65 s `total_request_timeout`, so FreightKit reports a slow carrier first. TMS must wait
+        # longer than this for `fetchRates`.
+        DEADLINE = 2.minutes
 
         EXCEPTIONS = {
           DeadlineExceededError => { code: 'TIMEOUT_ERROR' },
@@ -31,7 +33,7 @@ module Transponder
         argument :shipment, Types::ShipmentInputType, required: true
 
         def resolve(carrier:, shipment:)
-          message = "Carrier did not return rates within #{DEADLINE} seconds"
+          message = "Carrier did not return rates within #{DEADLINE.inspect}"
           result = Timeout.timeout(DEADLINE, DeadlineExceededError, message) { carrier.find_rates(shipment:) }
           return result if result.error.blank?
 

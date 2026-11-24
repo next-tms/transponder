@@ -46,7 +46,7 @@ RSpec.describe(Transponder::GraphQL::Queries::FetchRates) do
 
   before do
     allow(FreightKit::Carriers).to(receive(:all).and_return([carrier_class]))
-    stub_const("#{described_class}::DEADLINE", 0.1)
+    stub_const("#{described_class}::DEADLINE", 0.1.seconds)
   end
 
   context 'when the carrier does not return rates before the deadline' do
