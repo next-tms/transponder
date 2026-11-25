@@ -6,7 +6,7 @@ gem 'hanami-router', '~> 3.0.0'
 gem 'hanami-validations', '~> 2.3.0'
 
 gem 'dry-types', '~> 1.0', '>= 1.6.1'
-gem 'puma', '~> 8.0'
+gem 'puma', '~> 8.1'
 gem 'rake'
 
 gem 'graphql', '~> 2.6'
