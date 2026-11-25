@@ -9,7 +9,7 @@ WORKDIR /src
 ENV XCADDY_GO_BUILD_FLAGS='-trimpath -ldflags "-s -w -extldflags -static" -tags "osusergo,netgo"'
 RUN /go/bin/xcaddy build v$CADDY_VERSION --with github.com/ueffel/caddy-brotli
 
-FROM ruby:4.0.9-alpine3.24 AS runtime
+FROM ruby:4.0.10-alpine3.24 AS runtime
 RUN apk --no-cache upgrade && apk add --no-cache curl libpq-dev libxml2 libxslt imagemagick shared-mime-info yaml
 
 FROM runtime AS build
