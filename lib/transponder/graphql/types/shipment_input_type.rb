@@ -5,6 +5,7 @@ module Transponder
         argument :accessorials, [AccessorialInputType], required: false
         argument :declared_value, MoneyInputType, required: false
         argument :destination, LocationInputType, required: true
+        argument :estimate_reference, String, required: false
         argument :order_number, String, required: false
         argument :origin, LocationInputType, required: true
         argument :packages, [PackageInputType], required: true
@@ -17,6 +18,7 @@ module Transponder
             accessorials:,
             declared_value_cents: declared_value.fractional,
             destination:,
+            estimate_reference:,
             order_number:,
             origin:,
             packages:,
