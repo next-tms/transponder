@@ -1,4 +1,3 @@
-# flyctl launch added from .gitignore
 **/*.gem
 **/*.rbc
 **/.bundle
@@ -32,4 +31,3 @@
 **/vendor
 **/.byebug_history
 **/.rubocop-*
-fly.toml
